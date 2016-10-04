@@ -1,5 +1,5 @@
 #!/bin/sh
 set -ex
 
-flake8 ai_graph_color tests
+flake8 src test
 nosetests --with-coverage tests
