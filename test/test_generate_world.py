@@ -122,7 +122,7 @@ class TestValidInput(unittest.TestCase):
         """
         Tests that valid input is valid
         """
-        self.assertFalse(generate_world.valid_input(5, .1, .1, .1))
+        self.assertTrue(generate_world.valid_input(5, .1, .1, .1))
 
 
 class TestCheckProb(unittest.TestCase):
@@ -136,13 +136,13 @@ class TestCheckProb(unittest.TestCase):
         """
         Tests that a board that is too big doesn't work
         """
-        self.assertFalse(generate_world.check_board_size(25))
+        self.assertFalse(generate_world.check_board_size(26))
 
     def test_valid_board_size(self):
         """
         Tests that valid board size works
         """
-        self.assertFalse(generate_world.check_board_size(5))
+        self.assertTrue(generate_world.check_board_size(5))
 
 
 class CheckProb(unittest.TestCase):
@@ -157,3 +157,23 @@ class CheckProb(unittest.TestCase):
         Test check probability of correct
         """
         self.assertFalse(generate_world.check_prob(1, 0, 0))
+
+
+class TestChooseEmptyCell(unittest.TestCase):
+    def test_choose_empty_cell(self):
+        """
+        Test checks that an empty cell is chosen
+        """
+        empty_cells = [[0, 0]]
+        self.assertEqual([0, 0], generate_world.choose_empty_cell(empty_cells))
+
+
+class TestPlaceEmptyCell(unittest.TestCase):
+    def test_place_in_empty_cell(self):
+        """
+        Test checks that the correct item is placed in an empty cell
+        """
+        empty_cells = [[0, 0]]
+        board = [[Cell(Cell.EMPTY)]]
+        generate_world.place_in_empty_cell(board, Cell.GOLD, empty_cells)
+        self.assertEqual(Cell.GOLD, board[0][0].cell_type)

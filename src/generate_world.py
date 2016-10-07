@@ -46,12 +46,42 @@ def create_board(board_size, prob_obst, prob_pit, prob_wump):
             for col in xrange(board_size):
                 cell = create_cell(prob_obst, prob_pit, prob_wump)
                 if cell.cell_type == cell.EMPTY:
-                    empty_cells.append((row, col))
+                    empty_cells.append([row, col])
                 board[row].append(cell)
         if len(empty_cells) >= 2:
-            row, col = choice(empty_cells)
-            board[row][col] = Cell(Cell.GOLD)
+            place_in_empty_cell(board, Cell.GOLD, empty_cells)
             return board
+
+
+def place_in_empty_cell(board, cell_type, empty_cells):
+    """
+    Places a cell of given type in a random empty cell
+
+    :param board: board to place cell_type in
+    :type board: [[Cell]]
+    :param cell_type: the type of the cell
+    :type cell_type: int
+    :param empty_cells: a list of empty cells
+    :type empty_cells: list
+    :rtype: None
+    :return: None
+    """
+    row, col = choose_empty_cell(empty_cells)
+    board[row][col] = Cell(cell_type)
+
+
+def choose_empty_cell(empty_cells):
+    """
+    Chooses an empty cell and removes it from the set
+
+    :param empty_cells: list of empty cells
+    :type empty_cells: tuple
+    :rtype: tuple
+    :return: Chooses an empty cell
+    """
+    empty_cell = choice(empty_cells)
+    empty_cells.remove(empty_cell)
+    return empty_cell
 
 
 def create_cell(prob_obst, prob_pit, prob_wump):
