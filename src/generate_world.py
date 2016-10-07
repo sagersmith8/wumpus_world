@@ -1,4 +1,4 @@
-from random import random
+from random import random, choice
 from cell import Cell
 
 
@@ -46,9 +46,11 @@ def create_board(board_size, prob_obst, prob_pit, prob_wump):
             for col in xrange(board_size):
                 cell = create_cell(prob_obst, prob_pit, prob_wump)
                 if cell.cell_type == cell.EMPTY:
-                    empty_cells.append(cell)
+                    empty_cells.append((row, col))
                 board[row].append(cell)
         if len(empty_cells) >= 2:
+            row, col = choice(empty_cells)
+            board[row][col] = Cell(Cell.GOLD)
             return board
 
 
