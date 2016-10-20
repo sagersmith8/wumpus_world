@@ -71,7 +71,9 @@ class TestCreateCell(unittest.TestCase):
         """
         Tests that the cell probability creation works correctly
         """
-        empty_cells = [generate_world.create_cell(0, 0, 0) for _ in xrange(100)]
+        empty_cells = [
+            generate_world.create_cell(0, 0, 0) for _ in xrange(100)
+        ]
         obsical_cells = (
             [generate_world.create_cell(1, 0, 0) for _ in xrange(100)]
         )
