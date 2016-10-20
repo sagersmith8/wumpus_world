@@ -1,7 +1,6 @@
 class Navigator:
 
-    def __init__(self, board, reasoning_agent):
-        self.board = board
+    def __init__(self, reasoning_agent):
         self.reasoning_agent = reasoning_agent
 
     def path_to(self, cur_loc, final_loc):

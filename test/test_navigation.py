@@ -8,15 +8,17 @@ from src.cell_types import EMPTY
 class TestNavigation(unittest.TestCase):
     def setUp(self):
         self.board, self.agent_loc = generate_world(5, 0, 0, 0)
-        print self.agent_loc
-        self.print_board()
+        # self.print_board()
         self.navigator = Navigator(
-            self.board, self.fake_reasoning_agent
+            self.fake_reasoning_agent
         )
 
-    def test_simple_setup(self):
+    def test_simple_navigation_empty_board(self):
         final_loc = (0, 0)
-        print self.navigator.path_to(self.agent_loc, final_loc)
+        self.assertTupleEqual(
+            self.navigator.path_to(self.agent_loc, final_loc),
+            final_loc
+        )
 
     def fake_reasoning_agent(self, loc):
         return (
