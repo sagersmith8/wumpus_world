@@ -34,6 +34,9 @@ GOLD_REWARD = 1000
 
 class Environment:
     def __init__(self, board_state):
+        """
+        Constructs a new environment from an initial board state.
+        """
         self.board_state = board_state
         self.score = 0
         self.turn = 0
@@ -64,6 +67,12 @@ class Environment:
         return self.finished
 
     def named_percepts(self):
+        """
+        Gives a named list of senses currently available to the agent.
+
+        :rtype: list[string]
+        :returns: a list of sense as strings
+        """
         return map(
             lambda p: percepts.NAMES[p],
             self.get_percepts()
@@ -82,6 +91,14 @@ class Environment:
         return percepts
 
     def _record_action(self, action):
+        """
+        Prepares for an action to be performed by adjusting the score,
+        recording the action to be performed, and clearing the action
+        percepts.
+
+        :param action: the action that will be performed
+        :type action: int
+        """
         self._clear_action_percepts()
 
         self.actions.append(action)
@@ -90,27 +107,66 @@ class Environment:
         self.score -= ACTION_PENALTY[action]
 
     def _update_turn(self, action):
+        """
+        Cleans up after an action was performed by indexing the term
+        number and recording the resulting score.
+
+        :param action: the action that was performed
+        :type action: int
+        """
         self.scores.append(self.score)
         self.turn += 1
 
     def _kill_agent(self, death_pos, cell_type):
+        """
+        Processes the agent's death by updating their score with a
+        death penalty, giving the agent a death percept, and
+        recording the death.
+
+        :param death_pos: where the agent died
+        :type death_pos: list[int]
+        :param cell_type: the type of cell the agent died in
+        :type cell_type: int
+        """
         self.score -= DEATH_PENALTY
         self.deaths.append((self.turn, death_pos, cell_type))
         self.action_percepts.add(percepts.DEATH)
 
     def _kill_wumpus(self, wumpus_pos):
+        """
+        Processses a wumpus' death by removing it from the board,
+        rewarding the explorer the cost of shooting the arrow,
+        recording the wumpus kill, and giving the agent a scream
+        percept.
+
+        :param wumpus_pos: where the wumpus died
+        :type wumpus_pos: list[int]
+        """
         self.board_state.kill_wumpus(wumpus_pos)
         self.score += WUMPUS_KILL_REWARD
         self.kills.append((self.turn, wumpus_pos))
         self.action_percepts.add(percepts.SCREAM)
 
     def _do_turn_left(self):
+        """
+        Changes the position of agent in the board_state to be
+        facing left of its current direction.
+        """
         self.board_state.turn_left()
 
     def _do_turn_right(self):
+        """
+        Changes the position of agent in the board_state to be
+        facing right of its current direction.
+        """
         self.board_state.turn_right()
 
     def _do_shoot(self):
+        """
+        Fires an arrow in the direction the agent is facing.
+        If there is no obstacle in the way, kills the first
+        wumpus the arrow would land on.
+        """
         if self.board_state.arrows > 0:
             self.board_state.arrows -= 1
 
@@ -128,6 +184,10 @@ class Environment:
                 self._kill_wumpus(arrow_pos)
 
     def _do_grab(self):
+        """
+        If the agent is over the gold, grabs the gold and wins the game,
+        giving the explorer the reward. Otherwise, does nothing.
+        """
         current_cell = self.board_state.cell_at(self.board_state.pos)
 
         if current_cell.cell_type == cell_types.GOLD:
@@ -135,6 +195,10 @@ class Environment:
             self.score += GOLD_REWARD
 
     def _do_move_forward(self):
+        """
+        Tries to move the agent forward one square, possibly killing
+        or bumping the agent back in the process.
+        """
         next_pos = state.move(
             self.board_state.pos,
             self.board_state.direction
@@ -166,27 +230,59 @@ class Environment:
     }
 
     def perform_action(self, action):
+        """
+        Performs a specified action, keeping track of move history,
+        and other statistics.
+        """
         self._record_action(action)
         Environment.ACTION_METHOD[action](self)
         self._update_turn(action)
 
     def perform_actions(self, actions):
+        """
+        Performs a list of actions, ignoring percepts and keeping
+        track of statistics as they are performed.
+        """
         for action in actions:
             self.perform_action(action)
 
     def turn_left(self):
+        """
+        Changes the agent's direction to be turned one direction anti-
+        clockwise.
+        """
         self.perform_action(actions.LEFT)
 
     def turn_right(self):
+        """
+        Changes the agent's direction to be turned one direction clockwise.
+        """
         self.perform_action(actions.RIGHT)
 
     def move_forward(self):
+        """
+        Changes the agent's position to be moved forward one unit in the
+        direction the agent was facing.
+
+        An agent stays in the same place if:
+        -the spot where the agent would move would kill them (and senses DEATH)
+        -the spot where the agent would move has an obstacle (and senses BUMP)
+        -the spot where the agent would move is off of the board
+         (and senses BUMP)
+        """
         self.perform_action(actions.FORWARD)
 
     def shoot(self):
+        """
+        Causes the agent to fire an arrow in the direction they are facing.
+        """
         self.perform_action(actions.SHOOT)
 
     def grab(self):
+        """
+        Causes the agent to try to grab an item in the square they are
+        currently located at. If there is gold in that square, the agent wins.
+        """
         self.perform_action(actions.GRAB)
 
 
@@ -218,6 +314,14 @@ def stops_arrow(cell):
 
 
 def new_game(size):
+    """
+    Generate a new initial board state and environment of the given size.
+
+    :param size: the size of the board to make
+    :type size: int
+    :rtype: tuple(BoardState, Environment)
+    :returns: the board_state and corresponding environment for a new game
+    """
     import generate_world
 
     world = generate_world.generate_world(size, 0.1, 0.1, 0.1)
@@ -225,5 +329,11 @@ def new_game(size):
 
 
 def see(env):
+    """
+    Show the current board_state and the precepts from the environment
+
+    :rtype: None
+    :returns: Nothing, but prints the current state to the terminal
+    """
     env.board_state.show()
-    print env.named_percepts()
+    print "Percepts:", env.named_percepts()

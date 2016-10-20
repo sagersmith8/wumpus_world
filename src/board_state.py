@@ -6,12 +6,28 @@ import percepts
 
 class BoardState:
     def __init__(self, board, pos, direction):
+        """
+        Creates a new board with state to keep track of the game as it
+        is played
+
+        :param board: the initial set of cells in the board
+        :type board: list[list[Cell]]
+        :param pos: the initial position of the agent, given as column
+            then row order
+        :type pos: list[int]
+        :param direction: the initial direction of the agent
+        :type direction: int
+        """
         self.board = board
         self.pos = list(pos)
         self.direction = direction
         self.arrows = self.count_wumpuses()
 
     def show(self):
+        """
+        Prints a human readable representation of the current board-
+        state.
+        """
         for row in self.board:
             print ''.join(map(str, row))
 
@@ -20,6 +36,10 @@ class BoardState:
         print 'Arrows: {}'.format(self.arrows)
 
     def get_board_percepts(self):
+        """
+        Returns the percepts the agent percieves purely due to its
+        positioning relative to cells on the board.
+        """
         current_cell = self.cell_at(self.pos)
 
         if current_cell.get_percepts() is None:
@@ -72,6 +92,9 @@ class BoardState:
         Update the board state for killing a wumpus a the given position.
         - Change the cell where the wumpus was to empty
         - Remove the stench from adjacent cells
+
+        :param wumpus_pos: the position of the wumpus to kill
+        :type wumpus_pos: list[int]
         """
         wumpus_cell = self.cell_at(wumpus_pos)
         wumpus_cell.cell_type = cell_types.EMPTY
@@ -80,11 +103,28 @@ class BoardState:
             adj_cell.remove_percept(percepts.STENCH)
 
     def adj_cells(self, pos):
+        """
+        Gives the cells adjacent to a given position.
+
+        :param pos: the given position
+        :type pos: list[int]
+        :rtype: generator
+        :returns: an iterator for the cells adjacent to the current position
+        """
         return (self.cell_at(move(pos, direction))
                 for direction in directions.DIRECTIONS
                 if self.on_board(move(pos, direction)))
 
     def cell_at(self, pos):
+        """
+        Gives the cell at a given posiition.
+
+        :param pos: the given position
+        :type pos: list[int]
+        :rtype: Cell
+        :returns: the cell at the given position, or None if that position
+            on the board
+        """
         if not self.on_board(pos):
             return None
 
