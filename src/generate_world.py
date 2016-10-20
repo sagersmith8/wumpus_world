@@ -1,5 +1,7 @@
 from random import random, choice
 from cell import Cell
+from cell_types import GOLD, OBSTACLE, PIT, EMPTY, WUMPUS
+from directions import EAST
 
 
 def generate_world(board_size, prob_obst, prob_pit, prob_wump):
@@ -33,8 +35,8 @@ def create_board(board_size, prob_obst, prob_pit, prob_wump):
     :type prob_pit: float
     :param prob_wump: probability of a wumpus
     :type prob_wump: float
-    :rtype: [[Cell]]
-    :return: a board with the given constraints
+    :rtype: [[Cell]], Tuple(int, int)
+    :return: a board with the given constraints, and the location of the agent
     """
     prob_pit += prob_obst
     prob_wump += prob_pit
@@ -45,12 +47,13 @@ def create_board(board_size, prob_obst, prob_pit, prob_wump):
             board.append(list())
             for col in xrange(board_size):
                 cell = create_cell(prob_obst, prob_pit, prob_wump)
-                if cell.cell_type == cell.EMPTY:
+                if cell.cell_type == EMPTY:
                     empty_cells.append([row, col])
                 board[row].append(cell)
         if len(empty_cells) >= 2:
-            place_in_empty_cell(board, Cell.GOLD, empty_cells)
-            return board
+            place_in_empty_cell(board, GOLD, empty_cells)
+            agent_y, agent_x = choose_empty_cell(empty_cells)
+            return board, (agent_x, agent_y, EAST)
 
 
 def place_in_empty_cell(board, cell_type, empty_cells):
@@ -100,12 +103,12 @@ def create_cell(prob_obst, prob_pit, prob_wump):
     cell_type = random()
 
     if cell_type <= prob_obst:
-        return Cell(Cell.OBSTACLE)
+        return Cell(OBSTACLE)
     if cell_type <= prob_pit:
-        return Cell(Cell.PIT)
+        return Cell(PIT)
     if cell_type <= prob_wump:
-        return Cell(Cell.WUMPUS)
-    return Cell(Cell.EMPTY)
+        return Cell(WUMPUS)
+    return Cell(EMPTY)
 
 
 def valid_input(board_size, prob_obst, prob_pit, prob_wump):

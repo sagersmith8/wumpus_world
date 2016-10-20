@@ -9,4 +9,4 @@ notifications:
 # command to run test
 script:
  - ./run-tests.sh
- - codecov
+ #- codecov
