@@ -1,5 +1,5 @@
 import unittest
-from src.cell import Cell
+from src.cell import Cell, CellType
 
 
 class TestCell(unittest.TestCase):
@@ -7,38 +7,38 @@ class TestCell(unittest.TestCase):
         """
         Tests that an empty cell can be created
         """
-        cell = Cell(Cell.EMPTY)
-        self.assertEqual(Cell.EMPTY, cell.cell_type)
+        cell = Cell(CellType.EMPTY)
+        self.assertEqual(CellType.EMPTY, cell.cell_type)
         self.assertIsNone(cell.percepts)
 
     def test_obstical_cell(self):
         """
         Tests that an obstical cell can be correctly created
         """
-        cell = Cell(Cell.OBSTACLE)
-        self.assertEqual(Cell.OBSTACLE, cell.cell_type)
+        cell = Cell(CellType.OBSTACLE)
+        self.assertEqual(CellType.OBSTACLE, cell.cell_type)
         self.assertIsNone(cell.percepts)
 
     def test_pit_cell(self):
         """
         Tests that a pit cell can be correctly created
         """
-        cell = Cell(Cell.PIT)
-        self.assertEqual(Cell.PIT, cell.cell_type)
+        cell = Cell(CellType.PIT)
+        self.assertEqual(CellType.PIT, cell.cell_type)
         self.assertIsNone(cell.percepts)
 
     def test_wumpus_cell(self):
         """
         Tests that a wumpus cell can be correctly created
         """
-        cell = Cell(Cell.WUMPUS)
-        self.assertEqual(Cell.WUMPUS, cell.cell_type)
+        cell = Cell(CellType.WUMPUS)
+        self.assertEqual(CellType.WUMPUS, cell.cell_type)
         self.assertIsNone(cell.percepts)
 
     def test_gold_cell(self):
         """
         Test that a gold cell can be correctly created
         """
-        cell = Cell(Cell.GOLD)
-        self.assertEqual(Cell.GOLD, cell.cell_type)
+        cell = Cell(CellType.GOLD)
+        self.assertEqual(CellType.GOLD, cell.cell_type)
         self.assertIsNone(cell.percepts)
