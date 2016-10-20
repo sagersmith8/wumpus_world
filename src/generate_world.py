@@ -1,6 +1,6 @@
 from random import random, choice
 from cell import Cell
-from board_state import BoardState
+from board_state import BoardState, DIRECTIONS
 
 
 def generate_world(board_size, prob_obst, prob_pit, prob_wump):
@@ -93,7 +93,7 @@ def choose_empty_cell(empty_cells):
 
 
 def choose_direction():
-    return choice(BoardState.DIRECTIONS)
+    return choice(DIRECTIONS)
 
 
 def create_cell(prob_obst, prob_pit, prob_wump):

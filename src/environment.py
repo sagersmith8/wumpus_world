@@ -70,6 +70,13 @@ class Environment:
         self.action_percepts.clear()
 
     def is_finished(self):
+        """
+        Tells whether the agent has reached the goal state.
+        That is, tells whether the agent has picked up the gold.
+
+        :rtype: bool
+        :returns: whether the agent has picked up the gold yet
+        """
         return self.finished
 
     def get_percepts(self):
@@ -84,7 +91,7 @@ class Environment:
 
         return percepts
 
-    def record_action(self, action):
+    def _record_action(self, action):
         self.clear_action_percepts()
 
         self.actions.append(action)
@@ -92,27 +99,89 @@ class Environment:
 
         self.score -= ACTION_PENALTY[action]
 
-    def update_turn(self, action):
+    def _update_turn(self, action):
         self.scores.append(self.score)
         self.turn += 1
 
+    def _kill_agent(self, death_pos, cell_type):
+        self.score -= DEATH_PENALTY
+        self.deaths.append((self.turn, death_pos, cell_type))
+
+    def _kill_wumpus(self, wumpus_pos):
+        self.board_state.kill_wumpus(wumpus_pos)
+        self.score += WUMPUS_KILL_REWARD
+        self.kills.append((self.turn, wumpus_pos))
+
+    def _do_turn_left(self):
+        self.board_state.turn_left()
+
+    def _do_turn_right(self):
+        self.board_state.turn_right()
+
+    def _do_shoot(self):
+        if self.board_state.arrows > 0:
+            self.board_state.arrows -= 1
+
+            arrow_pos = self.board_state.pos
+            arrow_direction = self.board_state.direction
+
+            while (self.board_state.on_board(arrow_pos) and
+                   not self.board_state.cell_at(arrow_pos).stops_arrow()):
+                arrow_pos = self.board_state.move(arrow_pos, arrow_direction)
+
+            if (self.board_state.on_board(arrow_pos) and
+                    self.board_state.cell_at(
+                        arrow_pos
+                    ).cell_type == Cell.WUMPUS):
+                self._kill_wumpus(arrow_pos)
+                self.action_percepts.add(SCREAM)
+
+    def _do_grab(self):
+        current_cell = self.board_state.cell_at(self.board_state.pos)
+
+        if current_cell.cell_type == Cell.GOLD:
+            self.finished = True
+            self.score += GOLD_REWARD
+
+    def _do_move_forward(self):
+        next_pos = self.board_state.move_from(
+            self.board_state.pos,
+            self.board_state.direction
+        )
+
+        if not self.board_state.on_board(next_pos):
+            self.action_percepts.add(BUMP)
+            return
+
+        next_cell = self.board_state.cell_at(next_pos)
+        if next_cell.cell_type == Cell.OBSTACLE:
+            self.action_percepts.add(BUMP)
+            return
+
+        if deadly(next_cell):
+            self._kill_agent(next_pos, next_cell.cell_type)
+            return
+
+        # The agent should be able to move forward, given that they
+        # didn't bump into something or die
+        self.board_state.pos = next_pos
+
+    ACTION_METHOD = {
+        LEFT:    _do_turn_left,
+        RIGHT:   _do_turn_right,
+        FORWARD: _do_move_forward,
+        SHOOT:   _do_shoot,
+        GRAB:    _do_grab
+    }
+
     def perform_action(self, action):
-        self.record_action(action)
+        self._record_action(action)
         Environment.ACTION_METHOD[action](self)
-        self.update_turn(action)
+        self._update_turn(action)
 
     def perform_actions(self, actions):
         for action in actions:
             self.perform_action(action)
-
-    def kill_agent(self, death_pos, cell_type):
-        self.score -= DEATH_PENALTY
-        self.deaths.append((self.turn, death_pos, cell_type))
-
-    def kill_wumpus(self, wumpus_pos):
-        self.board_state.kill_wumpus(wumpus_pos)
-        self.score += WUMPUS_KILL_REWARD
-        self.kills.append((self.turn, wumpus_pos))
 
     def turn_left(self):
         self.perform_action(LEFT)
@@ -128,68 +197,6 @@ class Environment:
 
     def grab(self):
         self.perform_action(GRAB)
-
-    def do_turn_left(self):
-        self.board_state.turn_left()
-
-    def do_turn_right(self):
-        self.board_state.turn_right()
-
-    def do_shoot(self):
-        if self.board_state.arrows > 0:
-            self.board_state.arrows -= 1
-
-            arrow_pos = self.board_state.pos
-            arrow_direction = self.board_state.direction
-
-            while (self.board_state.on_board(arrow_pos) and
-                   not self.board_state.cell_at(arrow_pos).stops_arrow()):
-                arrow_pos = self.board_state.move(arrow_pos, arrow_direction)
-
-            if (self.board_state.on_board(arrow_pos) and
-                    self.board_state.cell_at(
-                        arrow_pos
-                    ).cell_type == Cell.WUMPUS):
-                self.kill_wumpus(arrow_pos)
-                self.action_percepts.add(SCREAM)
-
-    def do_grab(self):
-        current_cell = self.board_state.cell_at(self.board_state.pos)
-
-        if current_cell.cell_type == Cell.GOLD:
-            self.finished = True
-            self.score += GOLD_REWARD
-
-    def do_move_forward(self):
-        next_pos = self.board_state.move_from(
-            self.board_state.pos,
-            self.board_state.direction
-        )
-
-        if not self.board_state.on_board(next_pos):
-            self.action_percepts.add(BUMP)
-            return
-
-        next_cell = self.board_state.cell_at(next_pos)
-        if next_cell.cell_type == Cell.OBSTACLE:
-            self.action_percepts.add(BUMP)
-            return
-
-        if Environment.deadly(next_cell):
-            self.kill_agent(next_pos, next_cell.cell_type)
-            return
-
-        # The agent should be able to move forward, given that they
-        # didn't bump into something or die
-        self.board_state.pos = next_pos
-
-    ACTION_METHOD = {
-        LEFT:    do_turn_left,
-        RIGHT:   do_turn_right,
-        FORWARD: do_move_forward,
-        SHOOT:   do_shoot,
-        GRAB:    do_grab
-    }
 
 
 def deadly(cell):

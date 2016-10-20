@@ -1,28 +1,29 @@
 from cell import Cell
-from environment import Environment
+import environment
+
+
+"""
+Direction enumeration: all of the cardinal directions.
+Used to store which way the agent is facing.
+"""
+DIRECTIONS = range(4)
+NORTH, EAST, SOUTH, WEST = DIRECTIONS
+
+"""
+Mapping of directions to movement vectors.
+That is, a map determining how an agent's position
+changes depending on which way it is facing when
+it moves forward.
+"""
+MOVEMENTS = {
+    NORTH: [0, 1],
+    SOUTH: [0, -1],
+    EAST:  [1, 0],
+    WEST:  [-1, 0]
+}
 
 
 class BoardState:
-    """
-    Direction enumeration: all of the cardinal directions.
-    Used to store which way the agent is facing.
-    """
-    DIRECTIONS = range(4)
-    NORTH, EAST, SOUTH, WEST = DIRECTIONS
-
-    """
-    Mapping of directions to movement vectors.
-    That is, a map determining how an agent's position
-    changes depending on which way it is facing when
-    it moves forward.
-    """
-    MOVEMENTS = {
-        NORTH: [0, 1],
-        SOUTH: [0, -1],
-        EAST:  [1, 0],
-        WEST:  [-1, 0]
-    }
-
     def __init__(self, board, pos, direction):
         self.board = board
         self.pos = list(pos)
@@ -34,11 +35,11 @@ class BoardState:
 
         if current_cell.get_percepts() is None:
             current_cell.add_percept(
-                Environment.ON_SPOT_BOARD_PERCEPTS.get(current_cell.cell_type)
+                environment.ON_SPOT_BOARD_PERCEPTS.get(current_cell.cell_type)
             )
             for adj_cell in self.adj_cells(self.pos):
                 current_cell.add_percept(
-                    Environment.ADJACENT_BOARD_PERCEPTS.get(adj_cell.cell_type)
+                    environment.ADJACENT_BOARD_PERCEPTS.get(adj_cell.cell_type)
                 )
 
         return current_cell.get_percepts()
@@ -65,7 +66,7 @@ class BoardState:
         :rtype: None
         :returns: Nothing, but changes the agent's direction
         """
-        self.direction = (self.direction + 1) % len(BoardState.DIRECTIONS)
+        self.direction = (self.direction + 1) % len(DIRECTIONS)
 
     def turn_left(self):
         """
@@ -75,7 +76,7 @@ class BoardState:
         :rtype: None
         :returns: Nothing, but changes the agent's direction
         """
-        self.direction = (self.direction - 1) % len(BoardState.DIRECTIONS)
+        self.direction = (self.direction - 1) % len(DIRECTIONS)
 
     def kill_wumpus(self, wumpus_pos):
         """
@@ -87,11 +88,11 @@ class BoardState:
         wumpus_cell.cell_type = Cell.EMPTY
 
         for adj_cell in self.adj_cells(wumpus_pos):
-            adj_cell.remove_percept(Environment.STENCH)
+            adj_cell.remove_percept(environment.STENCH)
 
     def adj_cells(self, pos):
         return (self.cell_at(move(pos, direction))
-                for direction in BoardState.DIRECTIONS
+                for direction in DIRECTIONS
                 if self.on_board(move(pos, direction)))
 
     def cell_at(self, pos):
@@ -126,7 +127,7 @@ def move(pos, direction):
     :returns: a 2-length list indicating where the object would
         end up appearing on an infinite empty board after moving
     """
-    movement_vector = BoardState.MOVEMENTS[direction]
+    movement_vector = MOVEMENTS[direction]
 
     return [
         pos[i] + movement_vector[i] for i in xrange(len(pos))
