@@ -8,7 +8,6 @@ class Cell:
     WUMPUS = 3
     GOLD = 4
 
-
     """
     Percept types
     """
