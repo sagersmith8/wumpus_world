@@ -1,46 +1,46 @@
-from cell import Cell
+from cell import CellType
 
 
-"""
-Percepts, consisting of two types:
-- Board percepts; that is, percepts that persist if the agent
-  stays in a particular board state.
-  These percepts are BREEZE, STENCH, and GLITTER
-- Action percepts; that is, percepts that are only sensed
-  immediately after performing an action.
-  These percepts are BUMP and SCREAM
-"""
-PERCEPTS = range(5)
-BREEZE, STENCH, GLITTER, BUMP, SCREAM = PERCEPTS
+class Percept:
+    """
+    Percepts consist of two types:
+    - Board percepts; that is, percepts that persist if the agent
+      stays in a particular board state.
+      These percepts are BREEZE, STENCH, and GLITTER
+    - Action percepts; that is, percepts that are only sensed
+      immediately after performing an action.
+      These percepts are BUMP and SCREAM
+    """
+    PERCEPTS = range(5)
+    BREEZE, STENCH, GLITTER, BUMP, SCREAM = PERCEPTS
 
-ACTIONS = range(5)
-LEFT, RIGHT, FORWARD, SHOOT, GRAB = ACTIONS
 
-KILL_AGENT_CELLS = {Cell.PIT, Cell.WUMPUS}
-STOP_ARROW_CELLS = {Cell.OBSTACLE, Cell.WUMPUS}
+class Action:
+    ACTIONS = range(5)
+    LEFT, RIGHT, FORWARD, SHOOT, GRAB = ACTIONS
 
 ADJACENT_BOARD_PERCEPTS = {
-    Cell.PIT: BREEZE,
-    Cell.WUMPUS: STENCH
+    CellType.PIT: Percept.BREEZE,
+    CellType.WUMPUS: Percept.STENCH
 }
 ON_SPOT_BOARD_PERCEPTS = {
-    Cell.GOLD: GLITTER
+    CellType.GOLD: Percept.GLITTER
 }
 
 ACTION_NAME = {
-    LEFT:    'turn left',
-    RIGHT:   'turn right',
-    FORWARD: 'move forward',
-    SHOOT:   'shoot arrow',
-    GRAB:    'grab item'
+    Action.LEFT:    'turn left',
+    Action.RIGHT:   'turn right',
+    Action.FORWARD: 'move forward',
+    Action.SHOOT:   'shoot arrow',
+    Action.GRAB:    'grab item'
 }
 
 ACTION_PENALTY = {
-    LEFT:    1,
-    RIGHT:   1,
-    FORWARD: 1,
-    SHOOT:   10,
-    GRAB:    1
+    Action.LEFT:    1,
+    Action.RIGHT:   1,
+    Action.FORWARD: 1,
+    Action.SHOOT:   10,
+    Action.GRAB:    1
 }
 
 DEATH_PENALTY = 1000
@@ -58,7 +58,7 @@ class Environment:
         self.actions = []
         self.deaths = []
         self.kills = []
-        self.action_counts = {action: 0 for action in ACTIONS}
+        self.action_counts = {action: 0 for action in Action.ACTIONS}
 
     def clear_action_percepts(self):
         """
@@ -111,6 +111,7 @@ class Environment:
         self.board_state.kill_wumpus(wumpus_pos)
         self.score += WUMPUS_KILL_REWARD
         self.kills.append((self.turn, wumpus_pos))
+        self.action_percepts.add(Percept.SCREAM)
 
     def _do_turn_left(self):
         self.board_state.turn_left()
@@ -132,14 +133,13 @@ class Environment:
             if (self.board_state.on_board(arrow_pos) and
                     self.board_state.cell_at(
                         arrow_pos
-                    ).cell_type == Cell.WUMPUS):
+                    ).cell_type == CellType.WUMPUS):
                 self._kill_wumpus(arrow_pos)
-                self.action_percepts.add(SCREAM)
 
     def _do_grab(self):
         current_cell = self.board_state.cell_at(self.board_state.pos)
 
-        if current_cell.cell_type == Cell.GOLD:
+        if current_cell.cell_type == CellType.GOLD:
             self.finished = True
             self.score += GOLD_REWARD
 
@@ -150,12 +150,12 @@ class Environment:
         )
 
         if not self.board_state.on_board(next_pos):
-            self.action_percepts.add(BUMP)
+            self.action_percepts.add(Percept.BUMP)
             return
 
         next_cell = self.board_state.cell_at(next_pos)
-        if next_cell.cell_type == Cell.OBSTACLE:
-            self.action_percepts.add(BUMP)
+        if next_cell.cell_type == CellType.OBSTACLE:
+            self.action_percepts.add(Percept.BUMP)
             return
 
         if deadly(next_cell):
@@ -167,11 +167,11 @@ class Environment:
         self.board_state.pos = next_pos
 
     ACTION_METHOD = {
-        LEFT:    _do_turn_left,
-        RIGHT:   _do_turn_right,
-        FORWARD: _do_move_forward,
-        SHOOT:   _do_shoot,
-        GRAB:    _do_grab
+        Action.LEFT:    _do_turn_left,
+        Action.RIGHT:   _do_turn_right,
+        Action.FORWARD: _do_move_forward,
+        Action.SHOOT:   _do_shoot,
+        Action.GRAB:    _do_grab
     }
 
     def perform_action(self, action):
@@ -184,19 +184,23 @@ class Environment:
             self.perform_action(action)
 
     def turn_left(self):
-        self.perform_action(LEFT)
+        self.perform_action(Action.LEFT)
 
     def turn_right(self):
-        self.perform_action(RIGHT)
+        self.perform_action(Action.RIGHT)
 
     def move_forward(self):
-        self.perform_action(FORWARD)
+        self.perform_action(Action.FORWARD)
 
     def shoot(self):
-        self.perform_action(SHOOT)
+        self.perform_action(Action.SHOOT)
 
     def grab(self):
-        self.perform_action(GRAB)
+        self.perform_action(Action.GRAB)
+
+
+KILL_AGENT_CELLS = {CellType.PIT, CellType.WUMPUS}
+STOP_ARROW_CELLS = {CellType.OBSTACLE, CellType.WUMPUS}
 
 
 def deadly(cell):

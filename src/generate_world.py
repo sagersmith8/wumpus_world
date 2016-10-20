@@ -1,6 +1,6 @@
 from random import random, choice
-from cell import Cell
-from board_state import BoardState, DIRECTIONS
+from cell import Cell, CellType
+from board_state import BoardState, Direction
 
 
 def generate_world(board_size, prob_obst, prob_pit, prob_wump):
@@ -46,11 +46,11 @@ def create_board(board_size, prob_obst, prob_pit, prob_wump):
             board.append(list())
             for col in xrange(board_size):
                 cell = create_cell(prob_obst, prob_pit, prob_wump)
-                if cell.cell_type == cell.EMPTY:
+                if cell.cell_type == CellType.EMPTY:
                     empty_cells.append([row, col])
                 board[row].append(cell)
         if len(empty_cells) >= 2:
-            place_in_empty_cell(board, Cell.GOLD, empty_cells)
+            place_in_empty_cell(board, CellType.GOLD, empty_cells)
             starting_pos = choose_empty_cell(empty_cells)
             starting_direction = choose_direction()
 
@@ -93,7 +93,7 @@ def choose_empty_cell(empty_cells):
 
 
 def choose_direction():
-    return choice(DIRECTIONS)
+    return choice(Direction.DIRECTIONS)
 
 
 def create_cell(prob_obst, prob_pit, prob_wump):
@@ -112,12 +112,12 @@ def create_cell(prob_obst, prob_pit, prob_wump):
     cell_type = random()
 
     if cell_type <= prob_obst:
-        return Cell(Cell.OBSTACLE)
+        return Cell(CellType.OBSTACLE)
     if cell_type <= prob_pit:
-        return Cell(Cell.PIT)
+        return Cell(CellType.PIT)
     if cell_type <= prob_wump:
-        return Cell(Cell.WUMPUS)
-    return Cell(Cell.EMPTY)
+        return Cell(CellType.WUMPUS)
+    return Cell(CellType.EMPTY)
 
 
 def valid_input(board_size, prob_obst, prob_pit, prob_wump):

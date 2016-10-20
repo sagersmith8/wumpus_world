@@ -1,10 +1,12 @@
-class Cell:
+class CellType:
     """
     Cell types
     """
     CELL_TYPES = range(5)
     EMPTY, OBSTACLE, PIT, WUMPUS, GOLD = CELL_TYPES
 
+
+class Cell:
     def __init__(self, cell_type):
         """
         Constructs a cell of the given type
