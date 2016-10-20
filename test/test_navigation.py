@@ -7,7 +7,7 @@ from src.cell_types import EMPTY
 
 class TestNavigation(unittest.TestCase):
     def setUp(self):
-        self.board, self.agent_loc = generate_world(25, .3, 0, .2)
+        self.board, self.agent_loc = generate_world(5, 0, 0, 0)
         print self.agent_loc
         self.print_board()
         self.navigator = Navigator(
@@ -20,8 +20,8 @@ class TestNavigation(unittest.TestCase):
 
     def fake_reasoning_agent(self, loc):
         return (
-            0 <= loc[0] <= 24 and
-            0 <= loc[1] <= 24 and
+            0 <= loc[0] <= len(self.board) and
+            0 <= loc[1] <= len(self.board[0]) and
             self.board[loc[1]][loc[0]] == EMPTY
         )
 
