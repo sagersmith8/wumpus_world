@@ -19,10 +19,12 @@ class TestNavigation(unittest.TestCase):
         print self.navigator.path_to(self.agent_loc, final_loc)
 
     def fake_reasoning_agent(self, loc):
+        if 0 <= loc[0] < 5 and 0 <= loc[1] < 5:
+            print self.board[loc[1]][0], loc
         return (
-            0 <= loc[0] <= len(self.board) and
-            0 <= loc[1] <= len(self.board[0]) and
-            self.board[loc[1]][loc[0]] == EMPTY
+            0 > loc[0] >= len(self.board[0]) and
+            0 > loc[1] >= len(self.board) and
+            self.board[loc[1]][loc[0]] != EMPTY
         )
 
     def print_board(self):
