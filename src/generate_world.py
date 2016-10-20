@@ -53,7 +53,6 @@ def create_board(board_size, prob_obst, prob_pit, prob_wump):
         if len(empty_cells) >= 2:
             place_in_empty_cell(board, GOLD, empty_cells)
             agent_y, agent_x = choose_empty_cell(empty_cells)
-            print board[agent_y][agent_x]
             return board, (agent_x, agent_y, EAST)
 
 
