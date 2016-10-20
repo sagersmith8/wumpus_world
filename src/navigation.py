@@ -36,8 +36,8 @@ class Navigator:
         :param fin_y: the desired row location of agent
         :type fin_y: int
         :rtype: list[int]
-        :return: A queue of actions to take to get from the current square to the
-            desired square
+        :return: A queue of actions to take to get from the current
+            square to the desired square
         """
         frontier = list()
         frontier.append((cur_x, cur_y))
