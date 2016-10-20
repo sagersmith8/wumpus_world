@@ -27,7 +27,7 @@ class TestGenerateWorld(unittest.TestCase):
         Tests that a board is created with correct input
         """
         board_size = 5
-        board = generate_world.generate_world(board_size, .1, .1, .1)
+        board = generate_world.generate_world(board_size, .1, .1, .1).board
         self.assertIsNotNone(board)
         self.assertEqual(board_size, len(board))
         empty_count = 0
@@ -46,7 +46,7 @@ class TestCreateBoard(unittest.TestCase):
         Tests that a board is created with correct input
         """
         board_size = 5
-        board = generate_world.create_board(board_size, .1, .1, .1)
+        board = generate_world.create_board(board_size, .1, .1, .1).board
         self.assertIsNotNone(board)
         self.assertEqual(board_size, len(board))
         empty_count = 0
