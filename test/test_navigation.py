@@ -1,9 +1,7 @@
 import unittest
 
 from src.navigation import Navigator
-from src.cell import Cell
 from src.generate_world import generate_world
-from src.directions import EAST
 from src.cell_types import EMPTY
 
 
