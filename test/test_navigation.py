@@ -15,16 +15,14 @@ class TestNavigation(unittest.TestCase):
         )
 
     def test_simple_setup(self):
-        final_loc = (24, 24)
+        final_loc = (0, 0)
         print self.navigator.path_to(self.agent_loc, final_loc)
 
     def fake_reasoning_agent(self, loc):
-        if 0 <= loc[0] < 5 and 0 <= loc[1] < 5:
-            print self.board[loc[1]][0], loc
         return (
-            0 > loc[0] >= len(self.board[0]) and
-            0 > loc[1] >= len(self.board) and
-            self.board[loc[1]][loc[0]] != EMPTY
+            0 <= loc[0] < len(self.board[0]) and
+            0 <= loc[1] < len(self.board) and
+            self.board[loc[1]][loc[0]].cell_type == EMPTY
         )
 
     def print_board(self):

@@ -67,12 +67,6 @@ class Navigator:
         :rtype: list[Tuple(int,int)]
         :return: list of places to check
         """
-        toGo = [(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)]
-        for cell in toGo:
-            print self.reasoning_agent(cell)
-        print filter(
-            self.reasoning_agent, [(x+1, y), (x-1, y), (x, y+1), (x, y-1)]
-        )
         return filter(
             self.reasoning_agent, [(x+1, y), (x-1, y), (x, y+1), (x, y-1)]
         )
