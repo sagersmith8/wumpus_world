@@ -1,4 +1,4 @@
-from cell_types import WUMPUS, EMPTY, OBSTACLE, GOLD, PIT
+import cell_types
 
 
 class Cell:
@@ -11,29 +11,31 @@ class Cell:
         :rtype: Cell
         :return: Cell of the given type
         """
-        self.percepts = list()
+        self.percepts = None
         self.cell_type = cell_type
 
-    def kill(self):
-        """
-        Checks if the board can be killed and kills it if it can
+    def get_percepts(self):
+        return self.percepts
 
-        :rtype: bool
-        :return: True if cell was killed, false if cell was not
-        """
-        if self.cell_type == WUMPUS:
-            self.cell_type = EMPTY
-            return True
-        return False
+    def add_percept(self, percept):
+        if self.percepts is None:
+            self.percepts = set()
+
+        if percept is not None:
+            self.percepts.add(percept)
+
+    def remove_percept(self, percept):
+        if self.percepts:
+            self.percepts.discard(percept)
 
     def __str__(self):
-        if self.cell_type == WUMPUS:
+        if self.cell_type == cell_types.WUMPUS:
             return '[W]'
-        if self.cell_type == EMPTY:
+        if self.cell_type == cell_types.EMPTY:
             return '[E]'
-        if self.cell_type == OBSTACLE:
+        if self.cell_type == cell_types.OBSTACLE:
             return '[O]'
-        if self.cell_type == GOLD:
+        if self.cell_type == cell_types.GOLD:
             return '[G]'
-        if self.cell_type == PIT:
+        if self.cell_type == cell_types.PIT:
             return '[P]'
