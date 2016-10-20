@@ -1,5 +1,3 @@
-from directions import NORTH, SOUTH, EAST, WEST
-
 """
  Actions
  """
