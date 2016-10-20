@@ -7,5 +7,14 @@ Percept types:
                   stays the same
  Percepts: GLITTER, BREEZE and STENCH
 """
-PERCEPTS = range(5)
-GLITTER, BREEZE, STENCH, BUMP, SCREAM = PERCEPTS
+PERCEPTS = range(6)
+GLITTER, BREEZE, STENCH, BUMP, SCREAM, DEATH = PERCEPTS
+
+NAMES = {
+    GLITTER: 'GLITTER',
+    BREEZE:  'BREEZE',
+    STENCH:  'STENCH',
+    BUMP:    'BUMP',
+    SCREAM:  'SCREAM',
+    DEATH:   'DEATH'
+}

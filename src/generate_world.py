@@ -54,6 +54,7 @@ def create_board(board_size, prob_obst, prob_pit, prob_wump):
         if len(empty_cells) >= 2:
             place_in_empty_cell(board, cell_types.GOLD, empty_cells)
             starting_pos = choose_empty_cell(empty_cells)
+            starting_pos.reverse()
             starting_direction = choose_direction()
 
             return BoardState(

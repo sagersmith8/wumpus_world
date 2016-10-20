@@ -1,7 +1,7 @@
 import actions
 import cell_types
 import percepts
-
+import board_state as state
 
 ADJACENT_BOARD_PERCEPTS = {
     cell_types.PIT:    percepts.BREEZE,
@@ -63,6 +63,12 @@ class Environment:
         """
         return self.finished
 
+    def named_percepts(self):
+        return map(
+            lambda p: percepts.NAMES[p],
+            self.get_percepts()
+        )
+
     def get_percepts(self):
         """
         Gives the percepts that are currently available to to the agent.
@@ -90,6 +96,7 @@ class Environment:
     def _kill_agent(self, death_pos, cell_type):
         self.score -= DEATH_PENALTY
         self.deaths.append((self.turn, death_pos, cell_type))
+        self.action_percepts.add(percepts.DEATH)
 
     def _kill_wumpus(self, wumpus_pos):
         self.board_state.kill_wumpus(wumpus_pos)
@@ -111,8 +118,8 @@ class Environment:
             arrow_direction = self.board_state.direction
 
             while (self.board_state.on_board(arrow_pos) and
-                   not self.board_state.cell_at(arrow_pos).stops_arrow()):
-                arrow_pos = self.board_state.move(arrow_pos, arrow_direction)
+                   not stops_arrow(self.board_state.cell_at(arrow_pos))):
+                arrow_pos = state.move(arrow_pos, arrow_direction)
 
             if (self.board_state.on_board(arrow_pos) and
                     self.board_state.cell_at(
@@ -128,7 +135,7 @@ class Environment:
             self.score += GOLD_REWARD
 
     def _do_move_forward(self):
-        next_pos = self.board_state.move_from(
+        next_pos = state.move(
             self.board_state.pos,
             self.board_state.direction
         )
@@ -208,3 +215,15 @@ def stops_arrow(cell):
     :returns: whether or not an arrow can safely pass through this cell
     """
     return cell.cell_type in STOP_ARROW_CELLS
+
+
+def new_game(size):
+    import generate_world
+
+    world = generate_world.generate_world(size, 0.1, 0.1, 0.1)
+    return world, Environment(world)
+
+
+def see(env):
+    env.board_state.show()
+    print env.named_percepts()

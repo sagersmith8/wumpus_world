@@ -25,7 +25,8 @@ class Cell:
             self.percepts.add(percept)
 
     def remove_percept(self, percept):
-        self.percepts.discard(percept)
+        if self.percepts:
+            self.percepts.discard(percept)
 
     def __str__(self):
         if self.cell_type == cell_types.WUMPUS:

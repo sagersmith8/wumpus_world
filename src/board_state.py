@@ -1,6 +1,7 @@
-import environment
-import directions
 import cell_types
+import directions
+import environment
+import percepts
 
 
 class BoardState:
@@ -9,6 +10,14 @@ class BoardState:
         self.pos = list(pos)
         self.direction = direction
         self.arrows = self.count_wumpuses()
+
+    def show(self):
+        for row in self.board:
+            print ''.join(map(str, row))
+
+        print 'Position: {}'.format(self.pos)
+        print 'Direction: {}'.format(directions.NAMES[self.direction])
+        print 'Arrows: {}'.format(self.arrows)
 
     def get_board_percepts(self):
         current_cell = self.cell_at(self.pos)
@@ -68,7 +77,7 @@ class BoardState:
         wumpus_cell.cell_type = cell_types.EMPTY
 
         for adj_cell in self.adj_cells(wumpus_pos):
-            adj_cell.remove_percept(environment.STENCH)
+            adj_cell.remove_percept(percepts.STENCH)
 
     def adj_cells(self, pos):
         return (self.cell_at(move(pos, direction))
