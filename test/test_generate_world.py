@@ -1,6 +1,7 @@
 import unittest
 import src.generate_world as generate_world
-from src.cell import Cell, CellType
+from src import cell_types
+from src.cell import Cell
 
 
 class TestGenerateWorld(unittest.TestCase):
@@ -35,7 +36,7 @@ class TestGenerateWorld(unittest.TestCase):
             self.assertEqual(board_size, len(row))
             for cell in row:
                 self.assertIsNotNone(cell.cell_type)
-                if cell.cell_type == CellType.EMPTY:
+                if cell.cell_type == cell_types.EMPTY:
                     empty_count += 1
         self.assertGreaterEqual(empty_count, 2)
 
@@ -47,6 +48,7 @@ class TestCreateBoard(unittest.TestCase):
         """
         board_size = 5
         board = generate_world.create_board(board_size, .1, .1, .1).board
+
         self.assertIsNotNone(board)
         self.assertEqual(board_size, len(board))
         empty_count = 0
@@ -54,7 +56,7 @@ class TestCreateBoard(unittest.TestCase):
             self.assertEqual(board_size, len(row))
             for cell in row:
                 self.assertIsNotNone(cell.cell_type)
-                if cell.cell_type == CellType.EMPTY:
+                if cell.cell_type == cell_types.EMPTY:
                     empty_count += 1
         self.assertGreaterEqual(empty_count, 2)
 
@@ -85,19 +87,20 @@ class TestCreateCell(unittest.TestCase):
         )
 
         self.assertTrue(
-            all(cell.cell_type == CellType.EMPTY for cell in empty_cells)
+            all(cell.cell_type == cell_types.EMPTY for cell in empty_cells)
         )
 
         self.assertTrue(
-            all(cell.cell_type == CellType.OBSTACLE for cell in obsical_cells)
+            all(cell.cell_type == cell_types.OBSTACLE
+                for cell in obsical_cells)
         )
 
         self.assertTrue(
-            all(cell.cell_type == CellType.PIT for cell in pit_cells)
+            all(cell.cell_type == cell_types.PIT for cell in pit_cells)
         )
 
         self.assertTrue(
-            all(cell.cell_type == CellType.WUMPUS for cell in wumpus_cells)
+            all(cell.cell_type == cell_types.WUMPUS for cell in wumpus_cells)
         )
 
 
@@ -176,6 +179,6 @@ class TestPlaceEmptyCell(unittest.TestCase):
         Test checks that the correct item is placed in an empty cell
         """
         empty_cells = [[0, 0]]
-        board = [[Cell(CellType.EMPTY)]]
-        generate_world.place_in_empty_cell(board, CellType.GOLD, empty_cells)
-        self.assertEqual(CellType.GOLD, board[0][0].cell_type)
+        board = [[Cell(cell_types.EMPTY)]]
+        generate_world.place_in_empty_cell(board, cell_types.GOLD, empty_cells)
+        self.assertEqual(cell_types.GOLD, board[0][0].cell_type)

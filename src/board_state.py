@@ -1,27 +1,6 @@
-from cell import CellType
 import environment
-
-
-class Direction:
-    """
-    Direction enumeration: all of the cardinal directions.
-    Used to store which way the agent is facing.
-    """
-    DIRECTIONS = range(4)
-    NORTH, EAST, SOUTH, WEST = DIRECTIONS
-
-    """
-    Mapping of directions to movement vectors.
-    That is, a map determining how an agent's position
-    changes depending on which way it is facing when
-    it moves forward.
-    """
-    MOVEMENTS = {
-        NORTH: [0, 1],
-        SOUTH: [0, -1],
-        EAST:  [1, 0],
-        WEST:  [-1, 0]
-    }
+import directions
+import cell_types
 
 
 class BoardState:
@@ -55,7 +34,7 @@ class BoardState:
         count = 0
         for row in self.board:
             for cell in row:
-                if cell.cell_type == CellType.WUMPUS:
+                if cell.cell_type == cell_types.WUMPUS:
                     count += 1
         return count
 
@@ -67,7 +46,7 @@ class BoardState:
         :rtype: None
         :returns: Nothing, but changes the agent's direction
         """
-        self.direction = (self.direction + 1) % len(Direction.DIRECTIONS)
+        self.direction = (self.direction + 1) % len(directions.DIRECTIONS)
 
     def turn_left(self):
         """
@@ -77,7 +56,7 @@ class BoardState:
         :rtype: None
         :returns: Nothing, but changes the agent's direction
         """
-        self.direction = (self.direction - 1) % len(Direction.DIRECTIONS)
+        self.direction = (self.direction - 1) % len(directions.DIRECTIONS)
 
     def kill_wumpus(self, wumpus_pos):
         """
@@ -86,14 +65,14 @@ class BoardState:
         - Remove the stench from adjacent cells
         """
         wumpus_cell = self.cell_at(wumpus_pos)
-        wumpus_cell.cell_type = CellType.EMPTY
+        wumpus_cell.cell_type = cell_types.EMPTY
 
         for adj_cell in self.adj_cells(wumpus_pos):
             adj_cell.remove_percept(environment.STENCH)
 
     def adj_cells(self, pos):
         return (self.cell_at(move(pos, direction))
-                for direction in Direction.DIRECTIONS
+                for direction in directions.DIRECTIONS
                 if self.on_board(move(pos, direction)))
 
     def cell_at(self, pos):
@@ -128,7 +107,7 @@ def move(pos, direction):
     :returns: a 2-length list indicating where the object would
         end up appearing on an infinite empty board after moving
     """
-    movement_vector = Direction.MOVEMENTS[direction]
+    movement_vector = directions.MOVEMENTS[direction]
 
     return [
         pos[i] + movement_vector[i] for i in xrange(len(pos))

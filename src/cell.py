@@ -1,9 +1,4 @@
-class CellType:
-    """
-    Cell types
-    """
-    CELL_TYPES = range(5)
-    EMPTY, OBSTACLE, PIT, WUMPUS, GOLD = CELL_TYPES
+import cell_types
 
 
 class Cell:
@@ -31,3 +26,15 @@ class Cell:
 
     def remove_percept(self, percept):
         self.percepts.discard(percept)
+
+    def __str__(self):
+        if self.cell_type == cell_types.WUMPUS:
+            return '[W]'
+        if self.cell_type == cell_types.EMPTY:
+            return '[E]'
+        if self.cell_type == cell_types.OBSTACLE:
+            return '[O]'
+        if self.cell_type == cell_types.GOLD:
+            return '[G]'
+        if self.cell_type == cell_types.PIT:
+            return '[P]'
