@@ -1,5 +1,6 @@
 from random import random, choice
 from cell import Cell
+from board_state import BoardState
 
 
 def generate_world(board_size, prob_obst, prob_pit, prob_wump):
@@ -34,7 +35,7 @@ def create_board(board_size, prob_obst, prob_pit, prob_wump):
     :param prob_wump: probability of a wumpus
     :type prob_wump: float
     :rtype: [[Cell]]
-    :return: a board with the given constraints
+    :return: an initial board state having the given constraints
     """
     prob_pit += prob_obst
     prob_wump += prob_pit
@@ -50,7 +51,14 @@ def create_board(board_size, prob_obst, prob_pit, prob_wump):
                 board[row].append(cell)
         if len(empty_cells) >= 2:
             place_in_empty_cell(board, Cell.GOLD, empty_cells)
-            return board
+            starting_pos = choose_empty_cell(empty_cells)
+            starting_direction = choose_direction()
+
+            return BoardState(
+                board=board,
+                pos=starting_pos,
+                direction=starting_direction
+            )
 
 
 def place_in_empty_cell(board, cell_type, empty_cells):
@@ -82,6 +90,10 @@ def choose_empty_cell(empty_cells):
     empty_cell = choice(empty_cells)
     empty_cells.remove(empty_cell)
     return empty_cell
+
+
+def choose_direction():
+    return choice(BoardState.DIRECTIONS)
 
 
 def create_cell(prob_obst, prob_pit, prob_wump):

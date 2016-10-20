@@ -2,19 +2,8 @@ class Cell:
     """
     Cell types
     """
-    EMPTY = 0
-    OBSTACLE = 1
-    PIT = 2
-    WUMPUS = 3
-    GOLD = 4
-
-    """
-    Percept types
-    """
-    BUMP = OBSTACLE
-    BREEZE = PIT
-    STENCH = WUMPUS
-    GLITTER = GOLD
+    CELL_TYPES = range(5)
+    EMPTY, OBSTACLE, PIT, WUMPUS, GOLD = CELL_TYPES
 
     def __init__(self, cell_type):
         """
@@ -25,17 +14,18 @@ class Cell:
         :rtype: Cell
         :return: Cell of the given type
         """
-        self.percepts = list()
+        self.percepts = None
         self.cell_type = cell_type
 
-    def kill(self):
-        """
-        Checks if the board can be killed and kills it if it can
+    def get_percepts(self):
+        return self.percepts
 
-        :rtype: bool
-        :return: True if cell was killed, false if cell was not
-        """
-        if self.cell_type == Cell.WUMPUS:
-            self.cell_type = Cell.EMPTY
-            return True
-        return False
+    def add_percept(self, percept):
+        if self.percepts is None:
+            self.percepts = set()
+
+        if percept is not None:
+            self.percepts.add(percept)
+
+    def remove_percept(self, percept):
+        self.percepts.discard(percept)
