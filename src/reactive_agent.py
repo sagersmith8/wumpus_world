@@ -75,7 +75,6 @@ def run(env, logger):
         percept = env.get_percepts()
         logger.info("Percepts: %s", env.named_percepts())
 
-
         # update visited, safe, questionable, and unsafe
         if percepts.DEATH in percept or percepts.BUMP in percept:
             if last_action is not None:
