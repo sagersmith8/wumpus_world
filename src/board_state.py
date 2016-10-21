@@ -23,17 +23,25 @@ class BoardState:
         self.direction = direction
         self.arrows = self.count_wumpuses()
 
-    def show(self):
+    def show(self, logger=None):
         """
         Prints a human readable representation of the current board-
         state.
         """
-        for row in self.board:
-            print ''.join(map(str, row))
+        if logger:
+            for row in self.board:
+                logger.info(''.join(map(str, row)))
+            logger.info('Position: {}'.format(self.pos))
+            logger.info('Direction: {}'.format(
+                directions.NAMES[self.direction]))
+            logger.info('Arrows: {}'.format(self.arrows))
 
-        print 'Position: {}'.format(self.pos)
-        print 'Direction: {}'.format(directions.NAMES[self.direction])
-        print 'Arrows: {}'.format(self.arrows)
+        else:
+            for row in self.board:
+                print ''.join(map(str, row))
+            print 'Position: {}'.format(self.pos)
+            print 'Direction: {}'.format(directions.NAMES[self.direction])
+            print 'Arrows: {}'.format(self.arrows)
 
     def get_board_percepts(self):
         """

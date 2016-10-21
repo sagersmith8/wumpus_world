@@ -45,6 +45,7 @@ class Environment:
         self.actions = []
         self.deaths = []
         self.kills = []
+        self.finished = False
         self.action_counts = {action: 0 for action in actions.ACTIONS}
 
     def _clear_action_percepts(self):
@@ -328,12 +329,15 @@ def new_game(size):
     return world, Environment(world)
 
 
-def see(env):
+def see(env, logger=None):
     """
     Show the current board_state and the precepts from the environment
 
     :rtype: None
     :returns: Nothing, but prints the current state to the terminal
     """
-    env.board_state.show()
-    print "Percepts:", env.named_percepts()
+    env.board_state.show(logger)
+    if logger:
+        logger.info('Percepts: %s', env.named_percepts())
+    else:
+        print "Percepts:", env.named_percepts()
