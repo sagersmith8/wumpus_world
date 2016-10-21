@@ -48,8 +48,9 @@ class Navigator:
         came_from[(cur_x, cur_y)] = None
 
         while len(frontier) > 0:
-            x, y, direction, actions_to_take = frontier.pop()
+            x, y, direction, actions_to_take = frontier.pop(0)
             if (x, y) == (fin_x, fin_y):
+                print x, y
                 return actions_to_take
 
             to_visit = self.calculate_actions(
@@ -57,8 +58,12 @@ class Navigator:
             )
 
             to_visit.sort(key=lambda k: len(k[3]))
+            #print 'Loc', (x, y, directions.NAMES[direction])
+           # print 'Actions', actions_to_take
             for cell in to_visit:
-                loc = cell[0], cell[1]
+                loc = (cell[0], cell[1])
+                #print 'Next Loc', (cell[0], cell[1], directions.NAMES[cell[2]])
+                #print 'Actions', cell[3]
                 if loc not in came_from:
                     frontier.append(cell)
                     came_from[loc] = cell
@@ -82,16 +87,20 @@ class Navigator:
     def calculate_actions(self, x, y, direction, actions_to_take, to_visit):
         loc = [x, y]
         direction_vec = directions.MOVEMENTS[direction]
-
         for cell in to_visit:
-            next_direction_vec = [cell[0] - loc[0], cell[1] - loc[1]]
+            next_direction_vec = [loc[0] - cell[0], loc[1] - cell[1]]
             next_direction = directions.VECTORS[tuple(next_direction_vec)]
+            # print 'next_cell', cell
+            # print 'next_direction_vec', next_direction_vec
+            # print 'next_direction', next_direction
             num_moves = max(
-                direction_vec[0]+next_direction_vec[0],
-                direction_vec[1]+next_direction_vec[1]
+                direction_vec[0]-next_direction_vec[0],
+                direction_vec[1]-next_direction_vec[1]
             )
             cell.append(next_direction)
-            cell.append(self.resolve_actions(
+            #print 'to', (cell[0], cell[1]), 'from', loc, 'next_direction', directions.NAMES[next_direction], 'actions', r
+            cell.append(
+                self.resolve_actions(
                     actions_to_take, direction,
                     next_direction, num_moves
                 )
@@ -99,18 +108,18 @@ class Navigator:
 
         return to_visit
 
+    def rotate(self, direction, next_direction):
+        if next_direction < direction or direction - next_direction == -3:
+            return actions.LEFT
+        return actions.RIGHT
+
     def resolve_actions(
             self, actions_to_take, direction, next_direction, num_moves):
         if num_moves == 1:
-            # Bridger maths...
-            left = (
-                abs(direction-next_direction) % 4 <
-                abs(direction-next_direction-4) % 4
-            )
             return (
-                actions_to_take +
-                ([actions.LEFT] if left else [actions.RIGHT]) +
-                [actions.FORWARD]
+                actions_to_take + [
+                    self.rotate(direction, next_direction), actions.FORWARD
+                ]
             )
 
         if num_moves == 2:
@@ -119,4 +128,6 @@ class Navigator:
                 actions.LEFT,
                 actions.FORWARD
             ]
-        return actions_to_take + [actions.FORWARD]
+
+        if num_moves == 0:
+            return actions_to_take + [actions.FORWARD]
