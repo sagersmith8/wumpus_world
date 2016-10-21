@@ -45,6 +45,7 @@ class Environment:
         self.actions = []
         self.deaths = []
         self.kills = []
+        self.finished = False
         self.action_counts = {action: 0 for action in actions.ACTIONS}
 
     def _clear_action_percepts(self):

@@ -32,7 +32,8 @@ class BoardState:
             for row in self.board:
                 logger.info(''.join(map(str, row)))
             logger.info('Position: {}'.format(self.pos))
-            logger.info('Direction: {}'.format(directions.NAMES[self.direction]))
+            logger.info('Direction: {}'.format(
+                directions.NAMES[self.direction]))
             logger.info('Arrows: {}'.format(self.arrows))
 
         else:
