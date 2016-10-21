@@ -84,22 +84,23 @@ class Navigator:
             self.reasoning_agent, [[x+1, y], [x-1, y], [x, y+1], [x, y-1]]
         )
 
+    def calculate_next_direction_vec(self, loc, togo):
+        return [togo[0]-loc[0], togo[1]-loc[1]]
+
+    def calculate_num_moves(self, direction_vec, next_direction_vec):
+        return max(
+                abs(direction_vec[0]-next_direction_vec[0]),
+                abs(direction_vec[1]-next_direction_vec[1])
+            )
+
     def calculate_actions(self, x, y, direction, actions_to_take, to_visit):
         loc = [x, y]
         direction_vec = directions.MOVEMENTS[direction]
         for cell in to_visit:
-            next_direction_vec = [loc[0] - cell[0], loc[1] - cell[1]]
+            next_direction_vec = self.calculate_next_direction_vec(loc, cell)
             next_direction = directions.VECTORS[tuple(next_direction_vec)]
-            # print 'next_cell', cell
-            # print 'next_direction_vec', next_direction_vec
-            # print 'next_direction', next_direction
-            num_moves = max(
-                abs(direction_vec[0]-next_direction_vec[0]),
-                abs(direction_vec[1]-next_direction_vec[1])
-            )
-            # print num_moves
+            num_moves = self.calculate_num_moves(direction_vec, next_direction_vec)
             cell.append(next_direction)
-            #print 'to', (cell[0], cell[1]), 'from', loc, 'next_direction', directions.NAMES[next_direction], 'actions', r
             cell.append(
                 self.resolve_actions(
                     actions_to_take, direction,
@@ -110,9 +111,13 @@ class Navigator:
         return to_visit
 
     def rotate(self, direction, next_direction):
-        if next_direction < direction or direction == 0 and next_direction == 3:
-            return actions.LEFT
-        return actions.RIGHT
+        diff = abs(direction - next_direction)
+        if diff == 0 or diff == 2:
+            raise Exception()
+
+        if diff == 1:
+            return actions.RIGHT if direction < next_direction else actions.LEFT
+        return actions.LEFT if direction < next_direction else actions.RIGHT
 
     def resolve_actions(
             self, actions_to_take, direction, next_direction, num_moves):
