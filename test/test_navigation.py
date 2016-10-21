@@ -4,7 +4,7 @@ from src.navigation import Navigator
 from src.generate_world import generate_world
 from src.cell_types import EMPTY
 from src.actions import LEFT, RIGHT, FORWARD
-from src.directions import *
+from src.directions import NORTH, SOUTH, EAST, WEST, MOVEMENTS
 
 
 class TestNavigation(unittest.TestCase):
@@ -43,44 +43,127 @@ class TestNavigation(unittest.TestCase):
         self.assertEqual(self.navigator.rotate(3, 0), RIGHT)
 
     def test_resolve_actions_same_dir(self):
-        self.assertEqual(self.navigator.resolve_actions([], WEST, WEST, 0), [2])
-        self.assertEqual(self.navigator.resolve_actions([], NORTH, NORTH, 0), [2])
-        self.assertEqual(self.navigator.resolve_actions([], SOUTH, SOUTH, 0), [2])
-        self.assertEqual(self.navigator.resolve_actions([], EAST, EAST, 0), [2])
+        self.assertEqual(
+            self.navigator.resolve_actions([], WEST, WEST, 0), [2]
+        )
+        self.assertEqual(
+            self.navigator.resolve_actions([], NORTH, NORTH, 0), [2]
+        )
+        self.assertEqual(
+            self.navigator.resolve_actions([], SOUTH, SOUTH, 0), [2])
+        self.assertEqual(
+            self.navigator.resolve_actions([], EAST, EAST, 0), [2]
+        )
 
     def test_resolve_actions_dir_one_off(self):
-        self.assertEqual(self.navigator.resolve_actions([], WEST, NORTH, 1), [RIGHT, 2])
-        self.assertEqual(self.navigator.resolve_actions([], WEST, SOUTH, 1), [LEFT, 2])
-        self.assertEqual(self.navigator.resolve_actions([], NORTH, WEST, 1), [LEFT, 2])
-        self.assertEqual(self.navigator.resolve_actions([], NORTH, EAST, 1), [RIGHT, 2])
-        self.assertEqual(self.navigator.resolve_actions([], EAST, NORTH, 1), [LEFT, 2])
-        self.assertEqual(self.navigator.resolve_actions([], EAST, SOUTH, 1), [RIGHT, 2])
-        self.assertEqual(self.navigator.resolve_actions([], SOUTH, WEST, 1), [RIGHT, 2])
-        self.assertEqual(self.navigator.resolve_actions([], SOUTH, EAST, 1), [LEFT, 2])
+        self.assertEqual(
+            self.navigator.resolve_actions([], WEST, NORTH, 1), [RIGHT, 2]
+        )
+        self.assertEqual(
+            self.navigator.resolve_actions([], WEST, SOUTH, 1), [LEFT, 2]
+        )
+        self.assertEqual(
+            self.navigator.resolve_actions([], NORTH, WEST, 1), [LEFT, 2]
+        )
+        self.assertEqual(
+            self.navigator.resolve_actions([], NORTH, EAST, 1), [RIGHT, 2]
+        )
+        self.assertEqual(
+            self.navigator.resolve_actions([], EAST, NORTH, 1), [LEFT, 2]
+        )
+        self.assertEqual(
+            self.navigator.resolve_actions([], EAST, SOUTH, 1), [RIGHT, 2]
+        )
+        self.assertEqual(
+            self.navigator.resolve_actions([], SOUTH, WEST, 1), [RIGHT, 2]
+        )
+        self.assertEqual(
+            self.navigator.resolve_actions([], SOUTH, EAST, 1), [LEFT, 2]
+        )
 
     def test_resolve_actions_dir_opposites(self):
-        self.assertEqual(self.navigator.resolve_actions([], WEST, EAST, 2), [LEFT, LEFT, 2])
-        self.assertEqual(self.navigator.resolve_actions([], NORTH, SOUTH, 2), [LEFT, LEFT, 2])
-        self.assertEqual(self.navigator.resolve_actions([], SOUTH, NORTH, 2), [LEFT, LEFT, 2])
-        self.assertEqual(self.navigator.resolve_actions([], EAST, WEST, 2), [LEFT, LEFT, 2])
+        self.assertEqual(
+            self.navigator.resolve_actions(
+                [], WEST, EAST, 2), [LEFT, LEFT, 2]
+        )
+        self.assertEqual(
+            self.navigator.resolve_actions(
+                [], NORTH, SOUTH, 2
+            ), [LEFT, LEFT, 2]
+        )
+        self.assertEqual(
+            self.navigator.resolve_actions(
+                [], SOUTH, NORTH, 2
+            ), [LEFT, LEFT, 2]
+        )
+        self.assertEqual(
+            self.navigator.resolve_actions(
+                [], EAST, WEST, 2), [LEFT, LEFT, 2]
+        )
 
     def test_calculate_next_direction_vec(self):
-        self.assertEqual(MOVEMENTS[NORTH], self.navigator.calculate_next_direction_vec((0, 0), MOVEMENTS[NORTH]))
-        self.assertEqual(MOVEMENTS[SOUTH], self.navigator.calculate_next_direction_vec((0, 0), MOVEMENTS[SOUTH]))
-        self.assertEqual(MOVEMENTS[EAST], self.navigator.calculate_next_direction_vec((0, 0), MOVEMENTS[EAST]))
-        self.assertEqual(MOVEMENTS[WEST], self.navigator.calculate_next_direction_vec((0, 0), MOVEMENTS[WEST]))
+        self.assertEqual(
+            MOVEMENTS[NORTH],
+            self.navigator.calculate_next_direction_vec(
+                (0, 0), MOVEMENTS[NORTH]
+            )
+        )
+        self.assertEqual(
+            MOVEMENTS[SOUTH],
+            self.navigator.calculate_next_direction_vec(
+                (0, 0), MOVEMENTS[SOUTH]
+            )
+        )
+        self.assertEqual(
+            MOVEMENTS[EAST],
+            self.navigator.calculate_next_direction_vec(
+                (0, 0), MOVEMENTS[EAST]
+            )
+        )
+        self.assertEqual(
+            MOVEMENTS[WEST],
+            self.navigator.calculate_next_direction_vec(
+                (0, 0), MOVEMENTS[WEST]
+            )
+        )
 
     def test_calculate_num_moves_same(self):
-        self.assertEqual(0, self.navigator.calculate_num_moves(MOVEMENTS[WEST], MOVEMENTS[WEST]))
-        self.assertEqual(0, self.navigator.calculate_num_moves(MOVEMENTS[EAST], MOVEMENTS[EAST]))
-        self.assertEqual(0, self.navigator.calculate_num_moves(MOVEMENTS[NORTH], MOVEMENTS[NORTH]))
-        self.assertEqual(0, self.navigator.calculate_num_moves(MOVEMENTS[SOUTH], MOVEMENTS[SOUTH]))
+        self.assertEqual(
+            0, self.navigator.calculate_num_moves(
+                MOVEMENTS[WEST], MOVEMENTS[WEST]
+            )
+        )
+        self.assertEqual(
+            0, self.navigator.calculate_num_moves(
+                MOVEMENTS[EAST], MOVEMENTS[EAST]
+            )
+        )
+        self.assertEqual(
+            0, self.navigator.calculate_num_moves(
+                MOVEMENTS[NORTH], MOVEMENTS[NORTH]
+            )
+        )
+        self.assertEqual(
+            0, self.navigator.calculate_num_moves(
+                MOVEMENTS[SOUTH], MOVEMENTS[SOUTH]
+            )
+        )
 
     def test_calculate_num_moves_one_off(self):
-        self.assertEqual(MOVEMENTS[WEST], self.navigator.calculate_next_direction_vec((0, 0), MOVEMENTS[WEST]))
+        self.assertEqual(
+            MOVEMENTS[WEST],
+            self.navigator.calculate_next_direction_vec(
+                (0, 0), MOVEMENTS[WEST]
+            )
+        )
 
     def test_calculate_num_moves_opposites(self):
-        self.assertEqual(MOVEMENTS[WEST], self.navigator.calculate_next_direction_vec((0, 0), MOVEMENTS[WEST]))
+        self.assertEqual(
+            MOVEMENTS[WEST],
+            self.navigator.calculate_next_direction_vec(
+                (0, 0), MOVEMENTS[WEST]
+            )
+        )
 
     def test_calculate_actions_north(self):
         to_visit = [
@@ -90,17 +173,20 @@ class TestNavigation(unittest.TestCase):
             [MOVEMENTS[WEST][0], MOVEMENTS[WEST][1]]
         ]
         to_visit_expected_north = [
-            [MOVEMENTS[NORTH][0], MOVEMENTS[NORTH][1], NORTH, [FORWARD]],
-            [MOVEMENTS[EAST][0], MOVEMENTS[EAST][1], EAST, [RIGHT, FORWARD]],
-            [MOVEMENTS[SOUTH][0], MOVEMENTS[SOUTH][1], SOUTH, [LEFT, LEFT, FORWARD]],
-            [MOVEMENTS[WEST][0], MOVEMENTS[WEST][1], WEST, [LEFT, FORWARD]]
+            [MOVEMENTS[NORTH][0], MOVEMENTS[NORTH][1],
+             NORTH, [FORWARD]],
+            [MOVEMENTS[EAST][0], MOVEMENTS[EAST][1],
+             EAST, [RIGHT, FORWARD]],
+            [MOVEMENTS[SOUTH][0], MOVEMENTS[SOUTH][1], SOUTH,
+             [LEFT, LEFT, FORWARD]],
+            [MOVEMENTS[WEST][0], MOVEMENTS[WEST][1], WEST,
+             [LEFT, FORWARD]]
         ]
 
         self.assertEqual(
             self.navigator.calculate_actions(
                 0, 0, NORTH, [], to_visit
-            )
-            ,
+            ),
             to_visit_expected_north
         )
 
@@ -112,17 +198,20 @@ class TestNavigation(unittest.TestCase):
             [MOVEMENTS[WEST][0], MOVEMENTS[WEST][1]]
         ]
         to_visit_expected_east = [
-            [MOVEMENTS[NORTH][0], MOVEMENTS[NORTH][1], NORTH, [LEFT, FORWARD]],
-            [MOVEMENTS[EAST][0], MOVEMENTS[EAST][1], EAST, [FORWARD]],
-            [MOVEMENTS[SOUTH][0], MOVEMENTS[SOUTH][1], SOUTH, [RIGHT, FORWARD]],
-            [MOVEMENTS[WEST][0], MOVEMENTS[WEST][1], WEST, [LEFT, LEFT, FORWARD]]
+            [MOVEMENTS[NORTH][0], MOVEMENTS[NORTH][1],
+             NORTH, [LEFT, FORWARD]],
+            [MOVEMENTS[EAST][0], MOVEMENTS[EAST][1],
+             EAST, [FORWARD]],
+            [MOVEMENTS[SOUTH][0], MOVEMENTS[SOUTH][1],
+             SOUTH, [RIGHT, FORWARD]],
+            [MOVEMENTS[WEST][0], MOVEMENTS[WEST][1],
+             WEST, [LEFT, LEFT, FORWARD]]
         ]
 
         self.assertEqual(
             self.navigator.calculate_actions(
                 0, 0, EAST, [], to_visit
-            )
-            ,
+            ),
             to_visit_expected_east
         )
 
@@ -134,17 +223,20 @@ class TestNavigation(unittest.TestCase):
             [MOVEMENTS[WEST][0], MOVEMENTS[WEST][1]]
         ]
         to_visit_expected_west = [
-            [MOVEMENTS[NORTH][0], MOVEMENTS[NORTH][1], NORTH, [RIGHT, FORWARD]],
-            [MOVEMENTS[EAST][0], MOVEMENTS[EAST][1], EAST, [LEFT, LEFT, FORWARD]],
-            [MOVEMENTS[SOUTH][0], MOVEMENTS[SOUTH][1], SOUTH, [LEFT, FORWARD]],
-            [MOVEMENTS[WEST][0], MOVEMENTS[WEST][1], WEST, [FORWARD]]
+            [MOVEMENTS[NORTH][0], MOVEMENTS[NORTH][1],
+             NORTH, [RIGHT, FORWARD]],
+            [MOVEMENTS[EAST][0], MOVEMENTS[EAST][1],
+             EAST, [LEFT, LEFT, FORWARD]],
+            [MOVEMENTS[SOUTH][0], MOVEMENTS[SOUTH][1],
+             SOUTH, [LEFT, FORWARD]],
+            [MOVEMENTS[WEST][0], MOVEMENTS[WEST][1],
+             WEST, [FORWARD]]
         ]
 
         self.assertEqual(
             self.navigator.calculate_actions(
                 0, 0, WEST, [], to_visit
-            )
-            ,
+            ),
             to_visit_expected_west
         )
 
@@ -156,17 +248,20 @@ class TestNavigation(unittest.TestCase):
             [MOVEMENTS[WEST][0], MOVEMENTS[WEST][1]]
         ]
         to_visit_expected_south = [
-            [MOVEMENTS[NORTH][0], MOVEMENTS[NORTH][1], NORTH, [LEFT, LEFT, FORWARD]],
-            [MOVEMENTS[EAST][0], MOVEMENTS[EAST][1], EAST, [LEFT, FORWARD]],
-            [MOVEMENTS[SOUTH][0], MOVEMENTS[SOUTH][1], SOUTH, [FORWARD]],
-            [MOVEMENTS[WEST][0], MOVEMENTS[WEST][1], WEST, [RIGHT, FORWARD]]
+            [MOVEMENTS[NORTH][0], MOVEMENTS[NORTH][1],
+             NORTH, [LEFT, LEFT, FORWARD]],
+            [MOVEMENTS[EAST][0], MOVEMENTS[EAST][1],
+             EAST, [LEFT, FORWARD]],
+            [MOVEMENTS[SOUTH][0], MOVEMENTS[SOUTH][1],
+             SOUTH, [FORWARD]],
+            [MOVEMENTS[WEST][0], MOVEMENTS[WEST][1],
+             WEST, [RIGHT, FORWARD]]
         ]
 
         self.assertEqual(
             self.navigator.calculate_actions(
                 0, 0, SOUTH, [], to_visit
-            )
-            ,
+            ),
             to_visit_expected_south
         )
 

@@ -58,12 +58,8 @@ class Navigator:
             )
 
             to_visit.sort(key=lambda k: len(k[3]))
-            #print 'Loc', (x, y, directions.NAMES[direction])
-           # print 'Actions', actions_to_take
             for cell in to_visit:
                 loc = (cell[0], cell[1])
-                #print 'Next Loc', (cell[0], cell[1], directions.NAMES[cell[2]])
-                #print 'Actions', cell[3]
                 if loc not in came_from:
                     frontier.append(cell)
                     came_from[loc] = cell
@@ -99,7 +95,9 @@ class Navigator:
         for cell in to_visit:
             next_direction_vec = self.calculate_next_direction_vec(loc, cell)
             next_direction = directions.VECTORS[tuple(next_direction_vec)]
-            num_moves = self.calculate_num_moves(direction_vec, next_direction_vec)
+            num_moves = self.calculate_num_moves(
+                direction_vec, next_direction_vec
+            )
             cell.append(next_direction)
             cell.append(
                 self.resolve_actions(
@@ -116,7 +114,11 @@ class Navigator:
             raise Exception()
 
         if diff == 1:
-            return actions.RIGHT if direction < next_direction else actions.LEFT
+            return (
+                actions.RIGHT
+                if direction < next_direction
+                else actions.LEFT
+            )
         return actions.LEFT if direction < next_direction else actions.RIGHT
 
     def resolve_actions(
