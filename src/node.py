@@ -28,13 +28,15 @@ class Node:
         return '{}:{} [{}]'.format(self.type, self.name, self.args)
 
     def __eq__(self, other):
-        return self.type == other.type and self.name == other.name and self.args == other.args
+        return (self.type == other.type and
+                self.name == other.name and
+                self.args == other.args)
 
     def __hash__(self):
         if type(self.args) == list:
             return hash((self.type, self.name, tuple(self.args)))
         return hash((self.type, self.name, self.args))
-    
+
     def replace(self, var_name, node):
         """
         Constructs a new node with any variables with the given
@@ -59,9 +61,12 @@ class Node:
                     raise Exception("Can not offset a function")
             return node
         if self.type == FUNC:
-            return func(self.name, [arg.replace(var_name, node) for arg in self.args])
+            return func(self.name, [
+                arg.replace(var_name, node) for arg in self.args
+            ])
         return self
-    
+
+
 def const(name):
     """
     Creates a node representing a constant.
@@ -73,20 +78,22 @@ def const(name):
     """
     return Node(CONST, name)
 
+
 def var(name, offset=0):
     """
-    Creates a node representing a variable, potentially having 
-    an arithmetic offset. 
+    Creates a node representing a variable, potentially having
+    an arithmetic offset.
     (e.g. var(x, offset=1) represents X+1)
-    
+
     :param name: the variable's name
     :type name: string
     :param offset: the variable's arithmetic offset
     :type offset: int
     :rtype: Node
-    :returns: a node reprsenting a variable 
+    :returns: a node reprsenting a variable
     """
     return Node(VAR, name, offset)
+
 
 def func(name, args):
     """
@@ -102,6 +109,7 @@ def func(name, args):
     """
     return Node(FUNC, name, args)
 
+
 def unify(node1, node2):
     """
     Unfies two syntax nodes and gives the substitution string
@@ -112,10 +120,11 @@ def unify(node1, node2):
     :param node2: the second node to unify
     :type node2: Node
     :rtype: map{str: Node}
-    :returns: a map from variable names to the nodes to replace 
+    :returns: a map from variable names to the nodes to replace
         those variables, or None if the two terms can't unify.
     """
     return unify_str(node1, node2, {})
+
 
 def unify_str(node1, node2, subs):
     """
@@ -127,7 +136,7 @@ def unify_str(node1, node2, subs):
     :param node2: the second node to unify
     :type node2: Node
     :rtype: map{str: Node}
-    :returns: a substitution map from variable names to the nodes 
+    :returns: a substitution map from variable names to the nodes
         to replace those variables, or None if the two terms don't
         unify.
     """
@@ -152,6 +161,7 @@ def unify_str(node1, node2, subs):
         return subs
     return None
 
+
 def unify_var(variable, other, subs):
     """
     Recursively unfies two syntax nodes, one of which is known
@@ -170,15 +180,19 @@ def unify_var(variable, other, subs):
     :returns: a substitution map
     """
     if variable.name in subs:
-        sub_term = sub[variable.name]
+        sub_term = subs[variable.name]
         if sub_term.type == VAR:
-            return unify_str(var(sub_term.name, variable.args + sub_term.args), other, subs)
+            return unify_str(var(
+                sub_term.name, variable.args + sub_term.args
+            ), other, subs)
         else:
             return unify_str(sub_term, other, subs)
     if other.type == VAR and other.name in subs:
-        sub_term = sub[other.name]
+        sub_term = subs[other.name]
         if sub_term.type == VAR:
-            return unify_str(variable, var(sub_term.name, other.args + sub_term.args), subs)
+            return unify_str(variable, var(
+                sub_term.name, other.args + sub_term.args
+            ), subs)
         else:
             return unify_str(sub_term, other, subs)
     if variable.args != 0:
@@ -194,5 +208,5 @@ def unify_var(variable, other, subs):
         subs[variable.name] = var(other.name, other.args - variable.args)
         subs[other.name] = var(variable.name, variable.args - other.args)
     else:
-        subs[variable.name] = other        
+        subs[variable.name] = other
     return subs

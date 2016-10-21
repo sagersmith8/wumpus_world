@@ -1,15 +1,16 @@
 import itertools
 import node
 
+
 class ReasoningSystem:
     def __init__(self, axioms):
         """
         Creates a new reasoning system that can store axioms and
         perform resolution to try to prove queries.
-        
+
         :param axioms: the initial axioms for the system
         :type axioms: list[Clause]
-        """        
+        """
         self.facts = list(axioms)
 
     def tell(self, fact):
@@ -61,14 +62,15 @@ class Clause:
         """
         Gives a simple representation of the Clause
         """
-        return repr(self.pos) + " > " + repr(self.neg) 
+        return repr(self.pos) + " > " + repr(self.neg)
 
     def __eq__(self, other):
         return self.pos == other.pos and self.neg == other.neg
 
     def __hash__(self):
         return hash((tuple(self.pos), tuple(self.neg)))
-    
+
+
 def substitute_term(sub_str, term):
     """
     Create a new Node by applying a substitution string over its
@@ -78,6 +80,7 @@ def substitute_term(sub_str, term):
         term = term.replace(var_name, sub_str[var_name])
 
     return term
+
 
 def resolution(clauses, query):
     """
@@ -112,7 +115,7 @@ def resolution(clauses, query):
         if new <= clauses:
             return False
         clauses |= new
-        
+
 
 def resolve(clause_one, clause_two):
     """
@@ -128,7 +131,7 @@ def resolve(clause_one, clause_two):
     :param clause_two: the other clause to resolve
     :type clause_two: Clause
     :rtype: Clause
-    :returns: the Clause resulting from performing resolution on the 
+    :returns: the Clause resulting from performing resolution
     """
     sub_str = {}
     new_pos = []
@@ -141,9 +144,10 @@ def resolve(clause_one, clause_two):
         return None
 
     new_neg = [substitute_term(sub_str, term) for term in new_neg]
-    new_pos = [substitute_term(sub_str, term) for term in new_pos]    
-    
+    new_pos = [substitute_term(sub_str, term) for term in new_pos]
+
     return Clause(new_pos, new_neg)
+
 
 def resolve_with(pos, neg, sub_str, new_pos, new_neg):
     """
@@ -163,7 +167,7 @@ def resolve_with(pos, neg, sub_str, new_pos, new_neg):
     :type new_neg: list[Node]
     """
     untouched_neg = set(neg)
-    
+
     for pterm in pos:
         resolved_term = False
         for nterm in neg:
@@ -173,7 +177,7 @@ def resolve_with(pos, neg, sub_str, new_pos, new_neg):
             if subs is not None:
                 pterm = substitute_term(subs, pterm)
                 sub_str.update(subs)
-                resolved = resolved_term = True
+                resolved_term = True
                 untouched_neg.remove(nterm)
         if not resolved_term:
             new_pos.append(pterm)
@@ -195,11 +199,11 @@ if __name__ == '__main__':
      -can prove f(5)
      -can't prove f(4)
     """
-    from node import *
-    
+    from node import var, func, const
+
     r = Clause([func('f', [var('x')])], [func('g', [var('x')])])
     rs = ReasoningSystem([r])
     rs.tell(Clause([func('g', [const(5)])], []))
-    
+
     print rs.ask(func('f', [const(5)]))
-    print rs.ask(func('f', [const(4)]))    
+    print rs.ask(func('f', [const(4)]))
