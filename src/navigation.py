@@ -94,9 +94,10 @@ class Navigator:
             # print 'next_direction_vec', next_direction_vec
             # print 'next_direction', next_direction
             num_moves = max(
-                direction_vec[0]-next_direction_vec[0],
-                direction_vec[1]-next_direction_vec[1]
+                abs(direction_vec[0]-next_direction_vec[0]),
+                abs(direction_vec[1]-next_direction_vec[1])
             )
+            # print num_moves
             cell.append(next_direction)
             #print 'to', (cell[0], cell[1]), 'from', loc, 'next_direction', directions.NAMES[next_direction], 'actions', r
             cell.append(
@@ -109,7 +110,7 @@ class Navigator:
         return to_visit
 
     def rotate(self, direction, next_direction):
-        if next_direction < direction or direction - next_direction == -3:
+        if next_direction < direction or direction == 0 and next_direction == 3:
             return actions.LEFT
         return actions.RIGHT
 
@@ -122,12 +123,14 @@ class Navigator:
                 ]
             )
 
-        if num_moves == 2:
+        if num_moves == 0:
             return actions_to_take+[
+                actions.FORWARD
+            ]
+
+        if num_moves == 2:
+            return actions_to_take + [
                 actions.LEFT,
                 actions.LEFT,
                 actions.FORWARD
             ]
-
-        if num_moves == 0:
-            return actions_to_take + [actions.FORWARD]
