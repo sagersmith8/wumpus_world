@@ -1,3 +1,9 @@
+
+"""
+Types that AST nodes can have.
+Behavior and properties are described in more detail
+in the appropriate sections for building each node.
+"""
 ast_types = range(3)
 CONST, VAR, FUNC = ast_types
 
@@ -36,6 +42,21 @@ class Node:
         if type(self.args) == list:
             return hash((self.type, self.name, tuple(self.args)))
         return hash((self.type, self.name, self.args))
+
+    def rename_suffix(self, suffix):
+        """
+        Recursively traverses the syntax tree to appends a suffix
+        to all variable names. Mostly useful for separating clauses
+        apart from each other.
+
+        :param suffix: the suffix to add to each variable name
+        :type suffix: string
+        """
+        if self.type == VAR:
+            self.name += suffix
+        if self.type == FUNC:
+            for arg in self.args:
+                arg.rename_suffix(suffix)
 
     def replace(self, var_name, node):
         """

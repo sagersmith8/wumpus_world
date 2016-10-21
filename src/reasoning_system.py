@@ -12,6 +12,7 @@ class ReasoningSystem:
         :type axioms: list[Clause]
         """
         self.facts = list(axioms)
+        separate_apart(self.facts)
 
     def tell(self, fact):
         """
@@ -21,6 +22,7 @@ class ReasoningSystem:
         :param fact: the fact to add
         :type fact: Clause
         """
+        fact.rename_suffix(str(len(self.facts)))
         self.facts.append(fact)
 
     def ask(self, query):
@@ -48,6 +50,18 @@ class Clause:
         self.pos = pos
         self.neg = neg
 
+    def rename_suffix(self, suffix):
+        """
+        Renames the suffixes of variable on all of the syntax
+        nodes so that they can be distinguished from unrelated
+        variables in other clauses.
+
+        :param suffix: the suffix to add to each variable name
+        :type suffix: string
+        """
+        for term in self.pos + self.neg:
+            term.rename_suffix(suffix)
+
     def empty(self):
         """
         Determines whether this clause is the empty clause (that
@@ -69,6 +83,19 @@ class Clause:
 
     def __hash__(self):
         return hash((tuple(self.pos), tuple(self.neg)))
+
+
+def separate_apart(clauses):
+    """
+    'Separate apart' a list of caluses, ensure that variables
+    coming from separate clauses don't interfere with each other
+    by coincidentally sharing the same name.
+
+    :param clauses: the clauses to separate apart
+    :type clauses: list[Clause]
+    """
+    for index, clause in enumerate(clauses):
+        clause.rename_suffix(str(index))
 
 
 def substitute_term(sub_str, term):
