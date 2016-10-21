@@ -50,7 +50,6 @@ class Navigator:
         while len(frontier) > 0:
             x, y, direction, actions_to_take = frontier.pop(0)
             if (x, y) == (fin_x, fin_y):
-                print x, y
                 return actions_to_take
 
             to_visit = self.calculate_actions(
