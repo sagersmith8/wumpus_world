@@ -64,6 +64,14 @@ def run(env, logger):
     last_action = None
 
     def is_safe(pos):
+        """
+        Determines if a square is safe
+
+        :param pos: the location to check
+        :type pos: list[int, int]
+        :rtype: bool
+        :return: True if the square is safe, false otherwise
+        """
         pos = tuple(pos)
         if pos in safe or pos in visited or pos == dest_pos[0]:
             return True
