@@ -7,7 +7,10 @@ from src.cell_types import EMPTY
 
 class TestNavigation(unittest.TestCase):
     def setUp(self):
-        self.board, self.agent_loc = generate_world(5, 0, 0, 0)
+        self.board_state = generate_world(5, 0, 0, 0)
+        self.board = self.board_state.board
+        self.agent_loc = (self.board_state.pos +
+                          [self.board_state.direction])
         # self.print_board()
         self.navigator = Navigator(
             self.fake_reasoning_agent

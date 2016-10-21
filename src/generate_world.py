@@ -1,7 +1,8 @@
 from random import random, choice
+from board_state import BoardState
 from cell import Cell
-from cell_types import GOLD, OBSTACLE, PIT, EMPTY, WUMPUS
-from directions import EAST
+import cell_types
+import directions
 
 
 def generate_world(board_size, prob_obst, prob_pit, prob_wump):
@@ -35,8 +36,8 @@ def create_board(board_size, prob_obst, prob_pit, prob_wump):
     :type prob_pit: float
     :param prob_wump: probability of a wumpus
     :type prob_wump: float
-    :rtype: [[Cell]], Tuple(int, int)
-    :return: a board with the given constraints, and the location of the agent
+    :rtype: [[Cell]]
+    :return: an initial board state having the given constraints
     """
     prob_pit += prob_obst
     prob_wump += prob_pit
@@ -47,13 +48,20 @@ def create_board(board_size, prob_obst, prob_pit, prob_wump):
             board.append(list())
             for col in xrange(board_size):
                 cell = create_cell(prob_obst, prob_pit, prob_wump)
-                if cell.cell_type == EMPTY:
+                if cell.cell_type == cell_types.EMPTY:
                     empty_cells.append([row, col])
                 board[row].append(cell)
         if len(empty_cells) >= 2:
-            place_in_empty_cell(board, GOLD, empty_cells)
-            agent_y, agent_x = choose_empty_cell(empty_cells)
-            return board, (agent_x, agent_y, EAST)
+            place_in_empty_cell(board, cell_types.GOLD, empty_cells)
+            starting_pos = choose_empty_cell(empty_cells)
+            starting_pos.reverse()
+            starting_direction = choose_direction()
+
+            return BoardState(
+                board=board,
+                pos=starting_pos,
+                direction=starting_direction
+            )
 
 
 def place_in_empty_cell(board, cell_type, empty_cells):
@@ -87,6 +95,10 @@ def choose_empty_cell(empty_cells):
     return empty_cell
 
 
+def choose_direction():
+    return choice(directions.DIRECTIONS)
+
+
 def create_cell(prob_obst, prob_pit, prob_wump):
     """
     Creates a cell of the correct type using the probabilities
@@ -103,12 +115,12 @@ def create_cell(prob_obst, prob_pit, prob_wump):
     cell_type = random()
 
     if cell_type <= prob_obst:
-        return Cell(OBSTACLE)
+        return Cell(cell_types.OBSTACLE)
     if cell_type <= prob_pit:
-        return Cell(PIT)
+        return Cell(cell_types.PIT)
     if cell_type <= prob_wump:
-        return Cell(WUMPUS)
-    return Cell(EMPTY)
+        return Cell(cell_types.WUMPUS)
+    return Cell(cell_types.EMPTY)
 
 
 def valid_input(board_size, prob_obst, prob_pit, prob_wump):

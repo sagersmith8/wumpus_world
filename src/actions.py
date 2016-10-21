@@ -1,6 +1,2 @@
-"""
- Actions
- """
-MOVE = 4
-ROT_L = 5
-ROT_R = 6
+ACTIONS = range(5)
+LEFT, RIGHT, FORWARD, SHOOT, GRAB = ACTIONS
