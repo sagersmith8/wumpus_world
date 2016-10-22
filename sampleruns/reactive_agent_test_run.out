@@ -1,0 +1,2495 @@
+---Initial State---
+[E][O][E][E][E][O][O][E][W][G]
+[E][E][E][E][P][W][E][E][E][E]
+[P][O][W][P][O][E][E][P][E][E]
+[P][E][E][E][E][P][P][E][E][E]
+[E][E][W][E][E][E][E][E][E][P]
+[E][P][E][E][E][O][E][O][O][E]
+[E][E][E][E][E][O][E][E][E][E]
+[E][E][W][E][W][E][E][E][E][O]
+[O][E][E][O][W][E][E][E][E][E]
+[W][O][P][E][E][E][E][E][P][P]
+Position: [2, 3]
+Direction: east
+Arrows: 8
+Percepts: ['STENCH']
+
+---Reactive Agent Run---
+Percepts: ['STENCH']
+Starting navigation to questionable square: (0, 1)
+	Turned Left
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE']
+Starting navigation to questionable square: (0, 1)
+Percepts: ['BREEZE']
+Starting navigation to questionable square: (1, 2)
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'STENCH']
+Starting navigation to questionable square: (1, 2)
+Percepts: ['BREEZE', 'STENCH']
+Starting navigation to questionable square: (-1, 1)
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'BUMP']
+[0, 2] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH', 'DEATH']
+[0, 1] must be unnavigable
+Starting navigation to questionable square: (1, 3)
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'DEATH']
+[1, 3] must be unnavigable
+Starting navigation to questionable square: (-1, 0)
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'BUMP']
+[0, 2] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'DEATH']
+[0, 0] must be unnavigable
+Starting navigation to questionable square: (-1, 2)
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[0, 0] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'BUMP']
+[0, 2] must be unnavigable
+Starting navigation to questionable square: (3, 2)
+	Turned Left
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[3, 2] must be unnavigable
+Starting navigation to questionable square: (0, 3)
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'BUMP']
+[0, 2] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'DEATH']
+[1, 3] must be unnavigable
+Starting navigation to questionable square: (0, 2)
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'BUMP']
+[0, 2] must be unnavigable
+Starting navigation to questionable square: (2, 0)
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH']
+Starting navigation to questionable square: (2, 3)
+	Turned Left
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH']
+	Turned Right
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE']
+Starting navigation to questionable square: (2, 1)
+	Turned Left
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[2, 1] must be unnavigable
+Starting navigation to questionable square: (2, 2)
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[2, 1] must be unnavigable
+Starting navigation to questionable square: (0, -1)
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'BUMP']
+[0, 2] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE']
+Starting navigation to questionable square: (1, 0)
+	Turned Left
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE']
+Starting navigation to questionable square: (1, -1)
+	Turned Left
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE']
+Starting navigation to questionable square: (1, 1)
+	Turned Left
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH']
+Starting navigation to questionable square: (3, 2)
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[3, 2] must be unnavigable
+Starting navigation to questionable square: (1, 3)
+	Turned Right
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'DEATH']
+[1, 3] must be unnavigable
+Starting navigation to questionable square: (3, 3)
+	Turned Left
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE']
+Starting navigation to questionable square: (3, 0)
+	Turned Left
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH']
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['STENCH']
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([(3, 1), (3, -1), (4, 0)]) must be safe
+Starting navigation to safe square: (3, 1)
+	Turned Right
+Percepts: []
+Due to lack of danger set([(3, 1), (3, -1), (4, 0)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'STENCH']
+Starting navigation to safe square: (3, 1)
+Percepts: ['BREEZE', 'STENCH']
+Starting navigation to safe square: (3, -1)
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(4, 1)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(3, -1), (4, 0)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BUMP']
+[3, -1] must be unnavigable
+Starting navigation to safe square: (4, 0)
+	Turned Right
+Percepts: []
+Due to lack of danger set([(4, 0)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH']
+Starting navigation to safe square: (4, 1)
+	Turned Right
+Percepts: ['STENCH']
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([(5, 1), (4, 2)]) must be safe
+Starting navigation to safe square: (3, -1)
+	Turned Right
+Percepts: []
+Due to lack of danger set([(5, 1), (4, 2)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BUMP']
+[3, -1] must be unnavigable
+Starting navigation to safe square: (4, 0)
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH']
+Starting navigation to safe square: (4, 2)
+	Turned Right
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(5, 1), (4, 2)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH']
+Starting navigation to safe square: (5, 1)
+	Turned Left
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(5, 1)]) must be safe
+	Turned Right
+Percepts: []
+Due to lack of danger set([(5, 1)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH']
+Starting navigation to safe square: (4, 2)
+	Turned Left
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH']
+Starting navigation to safe square: (5, 1)
+	Turned Left
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH']
+Starting navigation to questionable square: (5, 0)
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH', 'DEATH']
+[5, 0] must be unnavigable
+Starting navigation to questionable square: (3, 0)
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([]) must be safe
+Starting navigation to questionable square: (2, -1)
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(2, -1)]) must be safe
+	Turned Right
+Percepts: []
+Due to lack of danger set([(2, -1)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE']
+Starting navigation to safe square: (2, -1)
+Percepts: ['BREEZE']
+Starting navigation to questionable square: (2, 1)
+	Turned Left
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH', 'DEATH']
+[2, 1] must be unnavigable
+Starting navigation to questionable square: (2, 3)
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[3, 2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[3, 2] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[2, 1] must be unnavigable
+Starting navigation to questionable square: (4, 2)
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[3, 2] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH']
+Starting navigation to questionable square: (1, -2)
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(4, -1)]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([(4, -1)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'DEATH']
+[1, -2] must be unnavigable
+Starting navigation to safe square: (4, -1)
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(4, -1)]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([(4, -1)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH']
+Starting navigation to safe square: (4, -1)
+Percepts: ['STENCH']
+Starting navigation to questionable square: (5, -1)
+	Turned Left
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(5, -1)]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([(5, -1)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH']
+Starting navigation to safe square: (5, -1)
+Percepts: ['STENCH']
+Starting navigation to questionable square: (4, -3)
+	Turned Left
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(5, -2)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(4, -3), (5, -2), (3, -2)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BUMP']
+[4, -3] must be unnavigable
+Starting navigation to safe square: (5, -2)
+	Turned Right
+Percepts: []
+Due to lack of danger set([(5, -2), (3, -2)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH']
+Starting navigation to safe square: (5, -2)
+Percepts: ['STENCH']
+Starting navigation to safe square: (4, -3)
+	Turned Left
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(5, -3)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(3, -2)]) must be safe
+	Turned Right
+Percepts: []
+Due to lack of danger set([(3, -2)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE']
+Starting navigation to safe square: (5, -3)
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'BUMP']
+[5, -3] must be unnavigable
+Starting navigation to safe square: (3, -2)
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(3, -2)]) must be safe
+	Turned Right
+Percepts: []
+Due to lack of danger set([(3, -2)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE']
+Starting navigation to safe square: (3, -2)
+Percepts: ['BREEZE']
+Starting navigation to questionable square: (5, 0)
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['STENCH', 'DEATH']
+[3, 0] must be unnavigable
+	Moved Forward
+Percepts: ['STENCH', 'DEATH']
+[3, 0] must be unnavigable
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH', 'DEATH']
+[3, 0] must be unnavigable
+Starting navigation to questionable square: (6, -3)
+	Moved Forward
+Percepts: ['STENCH', 'DEATH']
+[3, 0] must be unnavigable
+	Moved Forward
+Percepts: ['STENCH', 'DEATH']
+[3, 0] must be unnavigable
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(3, -3)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BUMP']
+[4, -3] must be unnavigable
+Starting navigation to safe square: (3, -3)
+	Moved Forward
+Percepts: ['BUMP']
+[4, -3] must be unnavigable
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([(3, -3)]) must be safe
+Starting navigation to safe square: (3, -3)
+	Turned Right
+Percepts: []
+Due to lack of danger set([(3, -3)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE']
+Starting navigation to safe square: (3, -3)
+Percepts: ['BREEZE']
+Starting navigation to questionable square: (3, -5)
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE']
+Starting navigation to questionable square: (2, -2)
+	Turned Left
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(2, -3)]) must be safe
+	Moved Forward
+Percepts: ['STENCH']
+	Turned Right
+Percepts: ['STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE']
+Starting navigation to safe square: (2, -3)
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE']
+Starting navigation to questionable square: (2, -5)
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'DEATH']
+[2, -5] must be unnavigable
+Starting navigation to questionable square: (6, 0)
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['STENCH']
+	Turned Right
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['STENCH', 'DEATH']
+[6, -1] must be unnavigable
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH', 'DEATH']
+[6, -1] must be unnavigable
+Starting navigation to questionable square: (7, -1)
+	Moved Forward
+Percepts: ['STENCH', 'DEATH']
+[6, -1] must be unnavigable
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH', 'BUMP']
+[7, -2] must be unnavigable
+Starting navigation to questionable square: (4, -5)
+	Turned Left
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['STENCH']
+	Turned Right
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([(4, -6), (4, -4), (5, -5)]) must be safe
+Starting navigation to safe square: (4, -4)
+	Turned Right
+Percepts: []
+Due to lack of danger set([(4, -6), (4, -4), (5, -5)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BUMP']
+[4, -4] must be unnavigable
+Starting navigation to safe square: (5, -5)
+	Turned Left
+Percepts: []
+Due to lack of danger set([(4, -6), (5, -5)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([(6, -5), (5, -4), (5, -6)]) must be safe
+Starting navigation to safe square: (6, -5)
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([(7, -5), (6, -6), (6, -4)]) must be safe
+Starting navigation to safe square: (6, -4)
+	Turned Right
+Percepts: []
+Due to lack of danger set([(7, -5), (6, -6), (6, -4)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH']
+Starting navigation to safe square: (4, -4)
+	Turned Right
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['STENCH', 'BUMP']
+[5, -4] must be unnavigable
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH', 'BUMP']
+[5, -4] must be unnavigable
+Starting navigation to safe square: (7, -5)
+	Turned Right
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(7, -5), (6, -6)]) must be safe
+	Turned Right
+Percepts: []
+Due to lack of danger set([(7, -5), (6, -6)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([(7, -4), (8, -5), (7, -6)]) must be safe
+Starting navigation to safe square: (4, -6)
+	Turned Left
+Percepts: []
+Due to lack of danger set([(7, -4), (8, -5), (7, -6)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(6, -6), (8, -6), (7, -7)]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([(6, -6), (8, -6), (7, -7)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(6, -7), (5, -6)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(5, -7), (4, -6)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BUMP']
+[4, -6] must be unnavigable
+Starting navigation to safe square: (7, -7)
+	Turned Right
+Percepts: []
+Due to lack of danger set([(5, -7)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(6, -7), (4, -7), (5, -8)]) must be safe
+	Turned Right
+Percepts: []
+Due to lack of danger set([(6, -7), (4, -7), (5, -8)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(6, -8), (7, -7)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE']
+Starting navigation to safe square: (7, -7)
+Percepts: ['BREEZE']
+Starting navigation to safe square: (6, -4)
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(9, -6), (8, -5)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(9, -5), (8, -4)]) must be safe
+	Turned Right
+Percepts: []
+Due to lack of danger set([(9, -5), (8, -4)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(7, -4)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BUMP']
+[6, -4] must be unnavigable
+Starting navigation to safe square: (9, -6)
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(7, -4)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(9, -5), (8, -4)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(9, -6), (10, -5), (9, -4)]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([(9, -6), (10, -5), (9, -4)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE']
+Starting navigation to safe square: (9, -5)
+	Turned Left
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([(10, -5), (9, -4)]) must be safe
+Starting navigation to safe square: (7, -6)
+	Turned Right
+Percepts: []
+Due to lack of danger set([(10, -5), (9, -4)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(8, -4)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(7, -4)]) must be safe
+	Turned Right
+Percepts: []
+Due to lack of danger set([(7, -4)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([]) must be safe
+Starting navigation to safe square: (9, -4)
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(10, -5), (9, -4)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([(9, -3), (10, -4), (8, -4)]) must be safe
+Starting navigation to safe square: (4, -6)
+	Turned Right
+Percepts: []
+Due to lack of danger set([(9, -3), (10, -4), (8, -4)]) must be safe
+	Moved Forward
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['STENCH', 'BUMP']
+[6, -4] must be unnavigable
+	Moved Forward
+Percepts: ['STENCH', 'BUMP']
+[6, -4] must be unnavigable
+	Turned Right
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([]) must be safe
+Starting navigation to safe square: (6, -7)
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([(6, -8)]) must be safe
+Starting navigation to safe square: (10, -5)
+	Turned Right
+Percepts: []
+Due to lack of danger set([(6, -8)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(7, -8)]) must be safe
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(10, -5)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BUMP']
+[10, -5] must be unnavigable
+Starting navigation to safe square: (5, -5)
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([]) must be safe
+Starting navigation to safe square: (7, -4)
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BUMP']
+[5, -4] must be unnavigable
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([]) must be safe
+Starting navigation to safe square: (8, -5)
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([]) must be safe
+Starting navigation to safe square: (9, -6)
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE']
+Starting navigation to safe square: (5, -7)
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BUMP']
+[5, -6] must be unnavigable
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([(6, -8)]) must be safe
+Starting navigation to safe square: (7, -5)
+	Turned Right
+Percepts: []
+Due to lack of danger set([(6, -8)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(7, -8)]) must be safe
+	Turned Right
+Percepts: []
+Due to lack of danger set([(7, -8)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([]) must be safe
+Starting navigation to safe square: (5, -8)
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BUMP']
+[5, -6] must be unnavigable
+	Moved Forward
+Percepts: ['BUMP']
+[5, -6] must be unnavigable
+	Moved Forward
+Navigation ended
+Percepts: ['BUMP']
+[5, -6] must be unnavigable
+Starting navigation to safe square: (10, -4)
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BUMP']
+[10, -5] must be unnavigable
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([(9, -3), (10, -4)]) must be safe
+Starting navigation to safe square: (9, -3)
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH']
+Starting navigation to safe square: (5, -6)
+	Turned Left
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(10, -4)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BUMP']
+[5, -6] must be unnavigable
+Starting navigation to safe square: (6, -8)
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(6, -8)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([(6, -9), (7, -8), (5, -8)]) must be safe
+Starting navigation to safe square: (8, -4)
+	Turned Right
+Percepts: []
+Due to lack of danger set([(6, -9), (7, -8), (5, -8)]) must be safe
+	Moved Forward
+Percepts: ['BUMP']
+[7, -8] must be unnavigable
+	Turned Right
+Percepts: []
+Due to lack of danger set([(6, -9), (5, -8)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BUMP']
+[6, -4] must be unnavigable
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([]) must be safe
+Starting navigation to safe square: (4, -7)
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BUMP']
+[5, -7] must be unnavigable
+	Moved Forward
+Navigation ended
+Percepts: ['BUMP']
+[5, -7] must be unnavigable
+Starting navigation to safe square: (5, -4)
+	Moved Forward
+Percepts: ['BUMP']
+[5, -7] must be unnavigable
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BUMP']
+[6, -4] must be unnavigable
+Starting navigation to safe square: (6, -6)
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([]) must be safe
+Starting navigation to safe square: (8, -6)
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([]) must be safe
+Starting navigation to safe square: (7, -8)
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BUMP']
+[7, -8] must be unnavigable
+Starting navigation to safe square: (9, -4)
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([(10, -4)]) must be safe
+Starting navigation to safe square: (10, -5)
+	Moved Forward
+Percepts: ['BUMP']
+[10, -4] must be unnavigable
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([]) must be safe
+Starting navigation to safe square: (5, -8)
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BUMP']
+[5, -6] must be unnavigable
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([(6, -9), (5, -8)]) must be safe
+Starting navigation to safe square: (10, -4)
+	Turned Left
+Percepts: []
+Due to lack of danger set([(6, -9), (5, -8)]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([(6, -9), (5, -8)]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BUMP']
+[6, -4] must be unnavigable
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BUMP']
+[10, -5] must be unnavigable
+Starting navigation to safe square: (6, -9)
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(6, -9), (5, -8)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BUMP']
+[6, -9] must be unnavigable
+Starting navigation to safe square: (6, -8)
+Percepts: ['BUMP']
+[6, -9] must be unnavigable
+Starting navigation to safe square: (5, -8)
+	Turned Left
+Percepts: []
+Due to lack of danger set([(5, -8)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE']
+Starting navigation to safe square: (6, -9)
+	Turned Left
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BUMP']
+[6, -9] must be unnavigable
+Starting navigation to safe square: (5, -8)
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE']
+Starting navigation to questionable square: (8, -8)
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'BUMP']
+[5, -7] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BUMP']
+[7, -8] must be unnavigable
+	Moved Forward
+Percepts: ['BUMP']
+[7, -8] must be unnavigable
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BUMP']
+[6, -9] must be unnavigable
+Starting navigation to questionable square: (2, -4)
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'BUMP']
+[5, -7] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'BUMP']
+[5, -7] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'BUMP']
+[5, -7] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, -8] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, -8] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'BUMP']
+[5, -7] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'DEATH']
+[4, -8] must be unnavigable
+Starting navigation to questionable square: (9, -7)
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'BUMP']
+[5, -7] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BUMP']
+[7, -8] must be unnavigable
+	Moved Forward
+Percepts: ['BUMP']
+[7, -8] must be unnavigable
+	Moved Forward
+Navigation ended
+Percepts: ['BUMP']
+[7, -8] must be unnavigable
+Starting navigation to questionable square: (7, -2)
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Right
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[3, -5] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(6, -3)]) must be safe
+	Moved Forward
+Percepts: ['STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH', 'BUMP']
+[8, -2] must be unnavigable
+Starting navigation to safe square: (6, -3)
+	Turned Left
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([(6, -3)]) must be safe
+	Turned Right
+Percepts: []
+Due to lack of danger set([(6, -3)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH']
+Starting navigation to safe square: (6, -3)
+Percepts: ['STENCH']
+Starting navigation to questionable square: (8, -3)
+	Turned Right
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['STENCH', 'DEATH']
+[7, -4] must be unnavigable
+	Moved Forward
+Percepts: ['STENCH', 'DEATH']
+[7, -4] must be unnavigable
+	Turned Right
+Percepts: ['STENCH']
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([(7, -3)]) must be safe
+Starting navigation to safe square: (7, -3)
+	Turned Left
+Percepts: []
+Due to lack of danger set([(7, -3)]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH']
+Starting navigation to safe square: (7, -3)
+Percepts: ['STENCH']
+Starting navigation to questionable square: (3, -3)
+	Turned Left
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH']
+	Turned Right
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([]) must be safe
+Starting navigation to questionable square: (6, -2)
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'STENCH']
+Starting navigation to questionable square: (1, -2)
+	Turned Right
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+Starting navigation to questionable square: (4, -1)
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[6, -1] must be unnavigable
+Starting navigation to questionable square: (8, -7)
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['STENCH', 'BUMP']
+[7, -5] must be unnavigable
+	Moved Forward
+Percepts: ['STENCH', 'BUMP']
+[7, -5] must be unnavigable
+	Moved Forward
+Percepts: ['STENCH', 'BUMP']
+[7, -5] must be unnavigable
+	Turned Right
+Percepts: ['STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH', 'DEATH']
+[8, -4] must be unnavigable
+Starting navigation to questionable square: (2, -3)
+	Turned Right
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['STENCH']
+	Turned Right
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([]) must be safe
+Starting navigation to questionable square: (3, 3)
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[6, -1] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[6, -1] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[6, -1] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[6, -1] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[6, -1] must be unnavigable
+Starting navigation to questionable square: (4, -5)
+	Turned Right
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BUMP']
+[6, -5] must be unnavigable
+Starting navigation to questionable square: (4, -2)
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH']
+	Turned Right
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+Starting navigation to questionable square: (8, -2)
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH', 'DEATH']
+[8, -2] must be unnavigable
+Starting navigation to questionable square: (3, -4)
+	Turned Left
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: []
+Due to lack of danger set([]) must be safe
+Starting navigation to questionable square: (1, -3)
+	Moved Forward
+Percepts: ['BUMP']
+[6, -5] must be unnavigable
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'BUMP']
+[3, -4] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['STENCH']
+	Turned Right
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['STENCH', 'DEATH']
+[3, -2] must be unnavigable
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH', 'DEATH']
+[3, -2] must be unnavigable
+Starting navigation to questionable square: (7, -3)
+	Turned Left
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE']
+Starting navigation to questionable square: (4, 1)
+	Turned Left
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+Starting navigation to questionable square: (5, -2)
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH']
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+Starting navigation to questionable square: (6, -3)
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[6, -1] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+Starting navigation to questionable square: (5, -9)
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[6, -1] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH']
+Starting navigation to questionable square: (7, -8)
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, -5] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['STENCH']
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['STENCH', 'BUMP']
+[7, -5] must be unnavigable
+	Moved Forward
+Percepts: ['STENCH', 'BUMP']
+[7, -5] must be unnavigable
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH', 'BUMP']
+[7, -5] must be unnavigable
+Starting navigation to questionable square: (9, -2)
+	Turned Right
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['STENCH', 'DEATH']
+[8, -4] must be unnavigable
+	Moved Forward
+Percepts: ['STENCH', 'DEATH']
+[8, -4] must be unnavigable
+	Turned Right
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH']
+Starting navigation to questionable square: (4, -8)
+	Turned Right
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH']
+	Turned Right
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['BUMP']
+[6, -5] must be unnavigable
+	Moved Forward
+Percepts: ['BUMP']
+[6, -5] must be unnavigable
+	Moved Forward
+Percepts: ['BUMP']
+[6, -5] must be unnavigable
+	Moved Forward
+Percepts: ['BUMP']
+[6, -5] must be unnavigable
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE']
+Starting navigation to questionable square: (7, -4)
+	Turned Left
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH']
+Starting navigation to questionable square: (10, -3)
+	Moved Forward
+Percepts: ['STENCH', 'DEATH']
+[8, -4] must be unnavigable
+	Moved Forward
+Percepts: ['STENCH', 'DEATH']
+[8, -4] must be unnavigable
+	Turned Right
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH']
+Starting navigation to questionable square: (2, -5)
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['STENCH', 'DEATH']
+[8, -4] must be unnavigable
+	Moved Forward
+Percepts: ['STENCH', 'DEATH']
+[8, -4] must be unnavigable
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[3, -3] must be unnavigable
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'DEATH']
+[3, -3] must be unnavigable
+Starting navigation to questionable square: (5, -3)
+	Turned Left
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['STENCH']
+Starting navigation to questionable square: (4, -4)
+	Turned Left
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Turned Left
+Percepts: []
+Due to lack of danger set([]) must be safe
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE']
+Starting navigation to questionable square: (5, 2)
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'STENCH']
+Starting navigation to questionable square: (6, 1)
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[6, -1] must be unnavigable
+Starting navigation to questionable square: (3, -2)
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'BUMP']
+[3, -1] must be unnavigable
+Starting navigation to questionable square: (6, -1)
+	Turned Left
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[6, -1] must be unnavigable
+Starting navigation to questionable square: (2, 0)
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'BUMP']
+[3, -1] must be unnavigable
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'BUMP']
+[3, -1] must be unnavigable
+Starting navigation to questionable square: (4, 3)
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+Starting navigation to questionable square: (10, -6)
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[6, -1] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[6, -1] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[6, -1] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[6, -1] must be unnavigable
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[6, -1] must be unnavigable
+Starting navigation to questionable square: (0, -1)
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'BUMP']
+[3, -1] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'BUMP']
+[3, -1] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'BUMP']
+[3, -1] must be unnavigable
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'BUMP']
+[3, -1] must be unnavigable
+Starting navigation to questionable square: (3, -6)
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, -5] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'BUMP']
+[3, -4] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'DEATH']
+[4, -5] must be unnavigable
+Starting navigation to questionable square: (3, 4)
+	Turned Left
+Percepts: ['BREEZE']
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['STENCH']
+	Moved Forward
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'BUMP']
+[3, -1] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+Starting navigation to questionable square: (2, 4)
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'BUMP']
+[3, -1] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'BUMP']
+[3, -1] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'DEATH']
+[4, 0] must be unnavigable
+Starting navigation to questionable square: (7, -1)
+	Turned Left
+Percepts: ['BREEZE']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[6, -1] must be unnavigable
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[6, -1] must be unnavigable
+Starting navigation to questionable square: (8, -3)
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[6, -1] must be unnavigable
+	Turned Left
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[5, -2] must be unnavigable
+	Turned Right
+Percepts: ['BREEZE', 'STENCH']
+	Moved Forward
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[6, -1] must be unnavigable
+	Moved Forward
+Navigation ended
+Percepts: ['BREEZE', 'STENCH', 'DEATH']
+[6, -1] must be unnavigable
+No squares left to go to, terminating...
+
+Final Score: -135842

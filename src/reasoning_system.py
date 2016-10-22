@@ -129,7 +129,11 @@ def resolution(clauses, query):
         provided facts.
     """
     clauses = set(clauses)
-    clauses.add(Clause([], [query]))
+
+    if query.neg and query.pos:
+        return None
+    
+    clauses.add(Clause(query.neg, query.pos)) # negate the query
 
     while True:
         new = set()
@@ -205,7 +209,7 @@ def resolve_with(pos, neg, sub_str, new_pos, new_neg):
                 pterm = substitute_term(subs, pterm)
                 sub_str.update(subs)
                 resolved_term = True
-                untouched_neg.remove(nterm)
+                untouched_neg.discard(nterm)
         if not resolved_term:
             new_pos.append(pterm)
 
@@ -232,5 +236,5 @@ if __name__ == '__main__':
     rs = ReasoningSystem([r])
     rs.tell(Clause([func('g', [const(5)])], []))
 
-    print rs.ask(func('f', [const(5)]))
-    print rs.ask(func('f', [const(4)]))
+    print rs.ask(Clause([func('f', [const(5)])], []))
+    print rs.ask(Clause([func('f', [const(4)])], []))
