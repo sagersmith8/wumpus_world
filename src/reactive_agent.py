@@ -55,7 +55,7 @@ def run(env, logger):
     """
     pos = (0, 0)
     dir = directions.NORTH
-    dest_pos = [None]
+    dest = tuple()
     visited = set()
     safe = set()
     questionable = set()
@@ -73,7 +73,7 @@ def run(env, logger):
         :return: True if the square is safe, false otherwise
         """
         pos = tuple(pos)
-        if pos in safe or pos in visited or pos == dest_pos[0]:
+        if pos in safe or pos in visited or pos == dest:
             return True
         return False
 
@@ -88,30 +88,34 @@ def run(env, logger):
             if last_action is not None:
                 unnav_pos, dir = action_result(pos, dir, last_action)
             unsafe |= {tuple(unnav_pos)}
-            logger.info("%s must be unnavigable", unnav_pos)
+            safe -= unsafe
+            questionable -= unsafe
+            # logger.info("%s must be unnavigable", unnav_pos)
         else:
             if last_action is not None:
                 pos, dir = action_result(pos, dir, last_action)
                 pos = tuple(pos)
             visited |= {tuple(pos)}
+            safe -= visited
 
             if percepts.BREEZE in percept or percepts.STENCH in percept:
-                questionable |= (adjacent(pos) - (safe | visited | unsafe))
+                questionable |= (adjacent(pos) - (safe | visited | unsafe | {dest}))
             else:
-                logger.info("Due to lack of danger %s must be safe",
-                            adjacent(pos) - (visited | unsafe))
-                safe |= (adjacent(pos) - (visited | unsafe))
+                # logger.info("Due to lack of danger %s must be safe",
+                # adjacent(pos) - (visited | unsafe | {dest})
+                safe |= (adjacent(pos) - (visited | unsafe | {dest}))
+                questionable -= safe
 
         if not actions_to_do:
             if percepts.GLITTER in percept:
                 logger.info("Found gold, terminating...")
                 env.grab()
             elif safe:
-                dest_pos[0] = dest = safe.pop()
+                dest = safe.pop()
                 logger.info("Starting navigation to safe square: %s", dest)
                 actions_to_do = navigator.path_to(pos + (dir,), dest)
             elif questionable:
-                dest_pos[0] = dest = questionable.pop()
+                dest = questionable.pop()
                 logger.info(
                     "Starting navigation to questionable square: %s", dest
                 )
@@ -120,25 +124,68 @@ def run(env, logger):
                 logger.info("No squares left to go to, terminating...")
                 return
         if actions_to_do:
-            last_action = actions_to_do.pop(0)
-            if last_action == actions.FORWARD:
-                env.move_forward()
-                logger.info("\tMoved Forward")
-            elif last_action == actions.LEFT:
-                env.turn_left()
-                logger.info("\tTurned Left")
-            elif last_action == actions.RIGHT:
-                env.turn_right()
-                logger.info("\tTurned Right")
+            if percepts.GLITTER in percept:
+                logger.info("Found gold, terminating...")
+                env.grab()
             else:
-                print(last_action)
-            if len(actions_to_do) == 0:
-                logger.info("Navigation ended")
+                last_action = actions_to_do.pop(0)
+                if last_action == actions.FORWARD:
+                    env.move_forward()
+                    logger.info("\tMoved Forward")
+                elif last_action == actions.LEFT:
+                    env.turn_left()
+                    logger.info("\tTurned Left")
+                elif last_action == actions.RIGHT:
+                    env.turn_right()
+                    logger.info("\tTurned Right")
+                else:
+                    print(last_action)
+                if len(actions_to_do) == 0:
+                    logger.info("Navigation ended")
+
+        logger.info("Current grid:")
+        print_grid([visited, safe, questionable, unsafe, {dest}],
+                   ['V', 'S', 'Q', 'U', 'D'],
+                   pos,
+                   dir,
+                   logger
+        )
+
+
+def print_grid(grid_sets, grid_letters, current_pos, current_dir, logger):
+    total_set = set()
+    for grid_set in grid_sets:
+        total_set |= grid_set
+
+    if len(total_set) == 0:
+        print "empty"
+        return
+        
+    min_x = min(map(lambda x: x[0], total_set))
+    max_x = max(map(lambda x: x[0], total_set))
+    min_y = min(map(lambda x: x[1], total_set))
+    max_y = max(map(lambda x: x[1], total_set))
+
+    x_size = max_x - min_x + 1
+    y_size = max_y - min_y + 1
+
+    out_grid = [[[' ' for i in xrange(len(grid_sets)+1)] for x in xrange(x_size)] for y in xrange(y_size)]
+
+    for grid_num, grid_set in enumerate(grid_sets):
+        for x, y in grid_set:
+            out_grid[y - min_y][x - min_x][grid_num] = grid_letters[grid_num]
+
+    cur_x, cur_y = current_pos
+    out_grid[cur_y - min_y][cur_x - min_x][len(grid_sets)] = directions.NAMES[current_dir][0]
+            
+    for row in out_grid:
+        logger.info(''.join('[' + ''.join(square) + ']' for square in row))
+    
 
 if __name__ == '__main__':
     import environment
     import logging
-    world, env = environment.new_game(10)
+    world, env = environment.new_game(25)
 
     logger = logging.getLogger('reactive_agent')
     logger.setLevel(logging.DEBUG)
