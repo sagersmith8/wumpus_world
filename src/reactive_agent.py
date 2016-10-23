@@ -124,20 +124,24 @@ def run(env, logger):
                 logger.info("No squares left to go to, terminating...")
                 return
         if actions_to_do:
-            last_action = actions_to_do.pop(0)
-            if last_action == actions.FORWARD:
-                env.move_forward()
-                logger.info("\tMoved Forward")
-            elif last_action == actions.LEFT:
-                env.turn_left()
-                logger.info("\tTurned Left")
-            elif last_action == actions.RIGHT:
-                env.turn_right()
-                logger.info("\tTurned Right")
+            if percepts.GLITTER in percept:
+                logger.info("Found gold, terminating...")
+                env.grab()
             else:
-                print(last_action)
-            if len(actions_to_do) == 0:
-                logger.info("Navigation ended")
+                last_action = actions_to_do.pop(0)
+                if last_action == actions.FORWARD:
+                    env.move_forward()
+                    logger.info("\tMoved Forward")
+                elif last_action == actions.LEFT:
+                    env.turn_left()
+                    logger.info("\tTurned Left")
+                elif last_action == actions.RIGHT:
+                    env.turn_right()
+                    logger.info("\tTurned Right")
+                else:
+                    print(last_action)
+                if len(actions_to_do) == 0:
+                    logger.info("Navigation ended")
 
         logger.info("Current grid:")
         print_grid([visited, safe, questionable, unsafe, {dest}],
@@ -181,7 +185,7 @@ def print_grid(grid_sets, grid_letters, current_pos, current_dir, logger):
 if __name__ == '__main__':
     import environment
     import logging
-    world, env = environment.new_game(10)
+    world, env = environment.new_game(25)
 
     logger = logging.getLogger('reactive_agent')
     logger.setLevel(logging.DEBUG)
