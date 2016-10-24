@@ -27,7 +27,7 @@ table_format = {
     'sizes': [5, 10, 15, 20, 25],
     'num_worlds': 100,
     'runs_per_world': 1,
-    'prob_total': [0.8],
+    'prob_total': [0.6, 0.8, 0.9],
     'sub_probs': [
         ([2, 1, 1], 'High Obstacle'),
         ([1, 2, 1], 'High Pit'),

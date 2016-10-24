@@ -4,8 +4,8 @@ import sys
 algorithms = ['Reactive Agent']
 
 table_format = {
-    'sizes': [5, 10],
-    'prob_total': [0.2, 0.4, 0.6, 0.8],
+    'sizes': [5, 10, 15, 20, 25],
+    'prob_total': [0.6, 0.8, 0.9],
     'sub_probs': [
         'High Obstacle',
         'High Pit',
@@ -27,7 +27,7 @@ entry_order = [
 ]
 
 def pm(stat):
-    return "{0:.2f} +/- ".format(stat[0]) + "{0:.2f}".format(stat[1])
+    return "$"+"{0:.2f} \\pm ".format(stat[0]) + "{0:.2f}".format(stat[1])+"$"
 
 
 table_data = json.load(open(sys.argv[1]))
@@ -44,12 +44,14 @@ for algorithm in algorithms:
                 )
             row.append(prob)
         rows.append(row)
-    print algorithm
+
+        
+    print '\\subsection{'+algorithm+' Results}\n'
     for row_num, row in enumerate(rows):
-        print str(table_format['sizes'][row_num]) + ':: ' + ''.join('['+', '.join(str(i['finished%']) for i in p)+']' for p in row)
+        print '\\begin{table}[ht]\n\\centering\n\\resizebox{\\textwidth}{!}{\\begin{tabular}{c|c|c|c|c|c|c|c|c|}\n\\cline{2-9}\n & prob & HO & HP & HW & EQ & NO & NP & NW \\\\\n\\hline\n\\multirow{3}{*}{percent completed}'
+        print '&' + '& '.join(str(table_format['prob_total'][pindex])+' & ' + ' & '.join(str(i['finished%']) for i in p)+'\\\\\n' for pindex, p in enumerate(row))+'\n\\hline'
+        
         for stat in entry_order:
-            print "{}: {}".format(
-                stat,
-                ''.join('['+', '.join(pm(i[stat]) for i in p)+']' for p in row)
-            )
+            print ('\multirow{3}{*}{' + stat.replace('_',' ') + '}&' +'\\\\\n& '.join(str(table_format['prob_total'][pindex]) + ' & ' + ' & '.join(pm(i[stat]) for i in p)+'' for pindex, p in enumerate(row))+'\\\\\n\\hline\n')
+        print('\\end{tabular}}\n\\caption{' + algorithm + ': size ' + str((row_num+1)*5) + '}\n\\end{table}\n\n')
 
