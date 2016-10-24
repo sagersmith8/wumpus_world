@@ -13,204 +13,326 @@ Axioms in clause form for making inferences about
 the wumpus world.
 """
 AXIOMS = [
-    Clause(
+    Clause( # Determine that a square with a pit
+        [   # is not safe, and a safe square is not a pit
+        ],  # not(pit(pos(x, y))) or not(safe(pos(x, y)))
         [
-            func('pit', [func('pos',
-                 [var('x', 1), var('y')]
-            )]),
-            func('pit', [func('pos',
-                 [var('x', -1), var('y')]
-            )]),
-            func('pit', [func('pos',
-                 [var('x'), var('y', 1)]
-            )]),
-            func('pit', [func('pos',
-                 [var('x'), var('y', -1)]
-            )])
+            func('pit', [
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ]),
+            func('safe', [
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ])
+        ]
+    ),
+    Clause( # Determine that a square with a wumpus
+        [   # is not safe, and a safe square is not a wumpus
         ],
-        [func('sense', [
-            const('BREEZE'),
-            func('pos',
-                 [var('x'), var('y')]
-            )]
-        )]
-    ),
-    Clause(
-        [func('sense', [
-            const('BREEZE'),
-            func('pos',
-                 [var('x'), var('y')]
-            )]
-        )],
         [
-            func('pit', [func('pos',
-                 [var('x', 1), var('y')]
-            )])
+            func('wumpus', [
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ]),
+            func('safe', [
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ])
         ]
     ),
-    Clause(
-        [func('sense', [
-            const('BREEZE'),
-            func('pos',
-                 [var('x'), var('y')]
-            )]
-        )],
+    Clause( # Determine that an pit and a wumpus are different
+        [   # that is, a pit is not a wumpus
+        ],  # and a wumpus is not a pit
         [
-            func('pit', [func('pos',
-                 [var('x', -1), var('y')]
-            )])
+            func('pit', [
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ]),
+            func('wumpus', [
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ])
         ]
-    ),
-    Clause(
-        [func('sense', [
-            const('BREEZE'),
-            func('pos',
-                 [var('x'), var('y')]
-            )]
-        )],
-        [
-            func('pit', [func('pos',
-                 [var('x'), var('y', 1)]
-            )])
-        ]
-    ),
-    Clause(
-        [func('sense', [
-            const('BREEZE'),
-            func('pos',
-                 [var('x'), var('y')]
-            )]
-        )],
-        [
-            func('pit', [func('pos',
-                 [var('x'), var('y', -1)]
-            )])
-        ]
-    ),
-    Clause(
-        [
-            func('wumpus', [func('pos',
-                 [var('x', 1), var('y')]
-            )]),
-            func('wumpus', [func('pos',
-                 [var('x', -1), var('y')]
-            )]),
-            func('wumpus', [func('pos',
-                 [var('x'), var('y', 1)]
-            )]),
-            func('wumpus', [func('pos',
-                 [var('x'), var('y', -1)]
-            )])            
+    ),    
+    Clause( # Determine that an empty square is safe
+        [   # and an unsafe square is not empty
+            func('safe', [
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ])
         ],
-        [func('sense', [
-            const('STENCH'),
-            func('pos',
-                 [var('x'), var('y')]
-            )]
-        )]
-    ),
-    Clause(
-        [func('sense', [
-            const('STENCH'),
-            func('pos',
-                 [var('x'), var('y')]
-            )]
-        )],
         [
-            func('wumpus', [func('pos',
-                 [var('x', 1), var('y')]
-            )])
+            func('empty', [
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ])
         ]
     ),
-    Clause(
-        [func('sense', [
-            const('STENCH'),
-            func('pos',
-                 [var('x'), var('y')]
-            )]
-        )],
+    Clause( # Determine that an obstacle square is safe
+        [   # and an unsafe square is not an obstacle
+            func('safe', [
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ])
+        ],
         [
-            func('wumpus', [func('pos',
-                 [var('x', -1), var('y')]
-            )])
+            func('obstacle', [
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ])
         ]
     ),
-    Clause(
-        [func('sense', [
-            const('STENCH'),
-            func('pos',
-                 [var('x'), var('y')]
-            )]
-        )],
+    Clause( # Determine that an empty square and an obstacle are different
+        [   # that is, an empty square is not an obstacle
+        ],  # and an obstacle is not empty
         [
-            func('wumpus', [func('pos',
-                 [var('x'), var('y', 1)]
-            )])
+            func('empty', [
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ]),
+            func('obstacle', [
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ])
         ]
     ),
-    Clause(
-        [func('sense', [
-            const('STENCH'),
-            func('pos',
-                 [var('x'), var('y')]
-            )]
-        )],
+    Clause( # Determine that the only unsafe squares are wumpuses or pits
+        [   # That is, if something is unsafe and not a wumpus it must be a pit
+            # And vice versa
+            # Also, determine that non-pit, non-wumpus squares are safe
+            func('safe', [
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ]),
+            func('pit', [
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ]),
+            func('wumpus', [
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ]),            
+        ],
         [
-            func('wumpus', [func('pos',
-                 [var('x'), var('y', -1)]
-            )])
         ]
     ),
-    Clause(
-        [func('safe',
-              [func('pos',
-                   [var('x'), var('y')]
-              )]
-        )],
-        [func('pit',
-              [func('pos',
-                   [var('x'), var('y')]
-              )]
-        ),
-        func('obstacle',
-             [func('pos',
-                  [var('x'), var('y')]
-             )]
-        ),
-        func('wumpus',
-             [func('pos',
-                  [var('x'), var('y')]
-             )]
-        )]
+    Clause( # Determine the location of a pit when there are three
+        [   # non-pits next to a breeze
+            func('pit', [
+                func('pos', [
+                    var('x', 1), var('y')
+                ])
+            ]),
+            func('pit', [
+                func('pos', [
+                    var('x', -1), var('y')
+                ])
+            ]),
+            func('pit', [
+                func('pos', [
+                    var('x'), var('y', 1)
+                ])
+            ]),
+            func('pit', [
+                func('pos', [
+                    var('x'), var('y', -1)
+                ])
+            ])            
+        ],
+        [
+            func('sense', [
+                const('BREEZE'),
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ])            
+        ]
     ),
-    Clause(
-        [],
-        [func('safe',
-              [func('pos',
-                    [var('x'), var('y')]
-              )]
-        ),        
-        func('wumpus',
-             [func('pos',
-                  [var('x'), var('y')]
-             )]
-        )]
+    Clause( # Determine the location of a wumpus when there are three 
+        [   # non-wumpuses next to a stench
+            func('wumpus', [
+                func('pos', [
+                    var('x', 1), var('y')
+                ])
+            ]),
+            func('wumpus', [
+                func('pos', [
+                    var('x', -1), var('y')
+                ])
+            ]),
+            func('wumpus', [
+                func('pos', [
+                    var('x'), var('y', 1)
+                ])
+            ]),
+            func('wumpus', [
+                func('pos', [
+                    var('x'), var('y', -1)
+                ])
+            ])            
+        ],
+        [
+            func('sense', [
+                const('STENCH'),
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ])            
+        ]
     ),
-    Clause(
-        [],
-        [func('safe',
-              [func('pos',
-                    [var('x'), var('y')]
-              )]
-        ),        
-        func('pit',
-             [func('pos',
-                  [var('x'), var('y')]
-             )]
-        )]
+    Clause( # infer a lack of pits from a lack of a breeze
+        [   # on the right side
+            func('sense', [
+                const('BREEZE'),
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ])
+        ],
+        [
+            func('pit', [
+                func('pos', [
+                    var('x', 1), var('y')
+                ])
+            ])
+        ]
+    ),
+    Clause( # infer a lack of pits from a lack of a breeze
+        [   # on the left side
+            func('sense', [
+                const('BREEZE'),
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ])
+        ],
+        [
+            func('pit', [
+                func('pos', [
+                    var('x', -1), var('y')
+                ])
+            ])
+        ]
+    ),
+    Clause( # infer a lack of pits from a lack of a breeze
+        [   # on the upward side
+            func('sense', [
+                const('BREEZE'),
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ])
+        ],
+        [
+            func('pit', [
+                func('pos', [
+                    var('x'), var('y', -1)
+                ])
+            ])
+        ]
+    ),
+    Clause( # infer a lack of pits from a lack of a breeze
+        [   # on the downward side
+            func('sense', [
+                const('BREEZE'),
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ])
+        ],
+        [
+            func('pit', [
+                func('pos', [
+                    var('x'), var('y', 1)
+                ])
+            ])
+        ]
+    ),
+    Clause( # infer a lack of wumpuses from a lack of a stench
+        [   # on the right side
+            func('sense', [
+                const('STENCH'),
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ])
+        ],
+        [
+            func('wumpus', [
+                func('pos', [
+                    var('x', 1), var('y')
+                ])
+            ])
+        ]
+    ),
+    Clause( # infer a lack of wumpuses from a lack of a stench
+        [   # on the left side
+            func('sense', [
+                const('STENCH'),
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ])
+        ],
+        [
+            func('wumpus', [
+                func('pos', [
+                    var('x', -1), var('y')
+                ])
+            ])
+        ]
+    ),
+    Clause( # infer a lack of wumpuses from a lack of a stench
+        [   # on the upward side
+            func('sense', [
+                const('STENCH'),
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ])
+        ],
+        [
+            func('wumpus', [
+                func('pos', [
+                    var('x'), var('y', -1)
+                ])
+            ])
+        ]
+    ),
+    Clause( # infer a lack of wumpuses from a lack of a stench
+        [   # on the downward side
+            func('sense', [
+                const('STENCH'),
+                func('pos', [
+                    var('x'), var('y')
+                ])
+            ])
+        ],
+        [
+            func('wumpus', [
+                func('pos', [
+                    var('x'), var('y', 1)
+                ])
+            ])
+        ]
     )
 ]
-
 
 def action_result(pos, dire, action):
     """
@@ -336,17 +458,31 @@ def run(env, logger):
     
     while not env.is_finished():
         senses = env.get_percepts()
+        print "Current Percepts:", env.named_percepts()
         logger.info("Percepts: %s", env.named_percepts())
 
-        current_pos, current_direction = action_result(
-            current_pos, current_direction, last_action
-        )
+        if percepts.BUMP in senses or percepts.DEATH in senses:
+            logger.info("%s must be unnavigable due to BUMP", to_visit_frontier[0])
+            frontier.discard(to_visit_frontier[0])
+            unnavigable.add(to_visit_frontier[0])
+        else:
+            current_pos, current_direction = action_result(
+                current_pos, current_direction, last_action
+            )
+            visited.add(current_pos)
+            reasoner.tell(safe(current_pos))
 
-        visited.add(current_pos)
         frontier |= (adjacent(current_pos) - visited)
         frontier -= visited
         frontier -= unnavigable
 
+        print "Current State:"
+        plot_grid([visited, frontier, unnavigable],
+                  ['V', 'F', 'U'],
+                  current_pos,
+                  current_direction
+        )
+        
         if len(path_actions) > 0:
             last_action = path_actions.pop(0)
             env.perform_action(last_action)
@@ -355,7 +491,7 @@ def run(env, logger):
                 logger.info("Navigation ended")
             continue
         
-        for percept in percepts.PERCEPTS:
+        for percept in [percepts.BREEZE, percepts.STENCH]:
             sense_node = func('sense', [
                 const(percepts.NAMES[percept]),
                 position(current_pos)
@@ -368,13 +504,8 @@ def run(env, logger):
         if percepts.GLITTER in senses:
             logger.info("Found gold, terminating...")
             env.grab()
-            continue          
-
-        if percepts.BUMP in senses:
-            logger.info("%s must be unnavigable due to BUMP", to_visit_frontier[0])
-            frontier.discard(to_visit_frontier[0])
-            unnavigable.add(to_visit_frontier[0])
-
+            continue
+          
         safe_frontier &= frontier
         safe_frontier |= {
             cell for cell in frontier - safe_frontier
@@ -386,6 +517,7 @@ def run(env, logger):
             path_actions = navigator.path_to(
                 current_pos + (current_direction,), to_visit_frontier[0]
             )
+            print "going from {} to {}".format(current_pos, to_visit_frontier[0])
             logger.info(
                 "Starting navigation to safe square: %s",
                 to_visit_frontier[0]
@@ -395,8 +527,9 @@ def run(env, logger):
             env.perform_action(last_action)
             continue
 
+        print "No safe cell..."
         
-        wumpus_frontier &= frontier
+        """wumpus_frontier &= frontier
         wumpus_frontier |= {
             cell for cell in frontier - wumpus_frontier
             if reasoner.ask(wumpus(cell))
@@ -456,11 +589,40 @@ def run(env, logger):
             )
             last_action = path_actions.pop(0)
             env.perform_action(last_action)
-            continue
+            continue"""
 
         logger.info('No more squares to check, terminating...')
         return
 
+def plot_grid(grid_list, grid_values, current_pos, current_dir):
+    if all(len(grid_set) == 0 for grid_set in grid_list):
+        print "Empty"
+        return
+
+    total_set = set()
+    for grid_set in grid_list:
+        total_set |= grid_set
+    
+    min_x = min(map(lambda c: c[0], total_set))
+    max_x = max(map(lambda c: c[0], total_set))
+    min_y = min(map(lambda c: c[1], total_set))
+    max_y = max(map(lambda c: c[1], total_set))
+
+    x_size = max_x - min_x + 1
+    y_size = max_y - min_y + 1
+
+    out_grid = [[[' ' for _ in xrange(len(grid_list) + 1)] for x in xrange(x_size)] for y in xrange(y_size)]
+
+    for grid_num, grid_set in enumerate(grid_list):
+        for x, y in grid_set:
+            out_grid[y - min_y][x - min_x][grid_num] = grid_values[grid_num]
+
+    cur_x, cur_y = current_pos
+    out_grid[cur_y - min_y][cur_x - min_x][len(grid_list)] = directions.NAMES[current_dir][0]
+            
+    for num, row in enumerate(out_grid):
+        print ''.join(map(lambda s: '[' + ''.join(s) + ']', row))
+        
 if __name__ == '__main__':
     import environment
     import logging

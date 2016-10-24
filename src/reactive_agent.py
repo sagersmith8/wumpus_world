@@ -4,6 +4,12 @@ import percepts
 from board_state import move
 from navigation import Navigator
 
+import random
+
+def pop(sample_set):
+    elem = random.choice(tuple(sample_set))
+    sample_set.remove(elem)
+    return elem
 
 def adjacent(pos):
     """
@@ -111,11 +117,11 @@ def run(env, logger):
                 logger.info("Found gold, terminating...")
                 env.grab()
             elif safe:
-                dest = safe.pop()
+                dest = pop(safe)
                 logger.info("Starting navigation to safe square: %s", dest)
                 actions_to_do = navigator.path_to(pos + (dir,), dest)
             elif questionable:
-                dest = questionable.pop()
+                dest = pop(questionable)
                 logger.info(
                     "Starting navigation to questionable square: %s", dest
                 )
@@ -144,12 +150,12 @@ def run(env, logger):
                     logger.info("Navigation ended")
 
         logger.info("Current grid:")
-        print_grid([visited, safe, questionable, unsafe, {dest}],
+        """print_grid([visited, safe, questionable, unsafe, {dest}],
                    ['V', 'S', 'Q', 'U', 'D'],
                    pos,
                    dir,
                    logger
-        )
+        )"""
 
 
 def print_grid(grid_sets, grid_letters, current_pos, current_dir, logger):

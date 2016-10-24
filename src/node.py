@@ -26,21 +26,54 @@ class Node:
         self.type = type
         self.name = name
         self.args = args
+        self.index_vars = []
+        
+        if self.type == VAR:
+            self.index_vars = [self.name]
+        elif self.type == FUNC:
+            for arg in self.args:
+                self.index_vars += arg.index_vars
 
+        self.index_map = {}
+        for index, index_var in enumerate(self.index_vars):
+            if index_var not in self.index_map:
+                self.index_map[index_var] = set()
+            self.index_map[index_var].add(index)
+        self.index_set = set(frozenset(index_set) for index_set in self.index_map.itervalues())
+        
     def __repr__(self):
         """
         A basic representation of a node for debugging.
         """
-        return '{}:{} [{}]'.format(self.type, self.name, self.args)
+        if self.type == VAR:
+            if self.args != 0:
+                return '{} + {}'.format(self.name, self.args)
+            return str(self.name)
+        if self.type == CONST:
+            return str(self.name)
+        if self.type == FUNC:
+            return '{}({})'.format(self.name, ', '.join(repr(arg) for arg in self.args))
 
     def __eq__(self, other):
-        return (self.type == other.type and
-                self.name == other.name and
-                self.args == other.args)
+        if self.type != other.type:
+            return False
+
+        if self.type == VAR:
+            return self.args == other.args
+
+        #if self.type == FUNC and self.index_set != other.index_set:
+        #return False
+        
+        return (
+            self.type == other.type and
+            self.name == other.name and
+            self.args == other.args)
 
     def __hash__(self):
         if type(self.args) == list:
             return hash((self.type, self.name, tuple(self.args)))
+        if self.type == VAR:
+            return hash((self.type, self.args))
         return hash((self.type, self.name, self.args))
 
     def rename_suffix(self, suffix):
@@ -53,6 +86,7 @@ class Node:
         :type suffix: string
         """
         if self.type == VAR:
+            #print "Rename: {} to {}", self.name, self.name + suffix
             self.name += suffix
         if self.type == FUNC:
             for arg in self.args:
@@ -77,7 +111,7 @@ class Node:
                 if node.type == VAR:
                     return var(node.name, self.args + node.args)
                 if node.type == CONST:
-                    return var(node.name + self.args)
+                    return const(node.name + self.args)
                 else:
                     raise Exception("Can not offset a function")
             return node
@@ -216,18 +250,27 @@ def unify_var(variable, other, subs):
             ), subs)
         else:
             return unify_str(sub_term, other, subs)
-    if variable.args != 0:
-        if other.type == CONST:
-            if type(other.name) != int:
-                return None
-            subs[variable.name] = const(other.name - variable.args)
-            return subs
-        elif other.type == FUNC:
+    if variable.args != 0 and other.type == FUNC:
             return None
 
-    if other.type == VAR:
-        subs[variable.name] = var(other.name, other.args - variable.args)
-        subs[other.name] = var(variable.name, variable.args - other.args)
+    if other.type == CONST:
+        subs[variable.name] = const(other.name - variable.args)
+    elif other.type == VAR:
+        if other.name != variable.name:
+            subs[variable.name] = var(other.name, other.args - variable.args)
     else:
+        if occurs(variable.name, other):
+            return None
         subs[variable.name] = other
+    """    if variable.name in subs:
+        print "Unify var {} and {} to {}:".format(
+            variable,
+            other,
+            subs[variable.name]
+        )"""
     return subs
+
+def occurs(var_name, node):
+    if node.type == FUNC:
+        return any(occurs(var_name, arg) for arg in node.args)
+    return node.type == VAR and node.name == var_name

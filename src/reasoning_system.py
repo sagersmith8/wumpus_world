@@ -47,8 +47,8 @@ class Clause:
         :param neg: the negated terms in the clause
         :type neg: list[Node]
         """
-        self.pos = pos
-        self.neg = neg
+        self.pos = set(pos)
+        self.neg = set(neg)
 
     def rename_suffix(self, suffix):
         """
@@ -59,8 +59,15 @@ class Clause:
         :param suffix: the suffix to add to each variable name
         :type suffix: string
         """
-        for term in self.pos + self.neg:
+        for term in self.pos | self.neg:
             term.rename_suffix(suffix)
+
+    def tautological(self):
+        for pterm in self.pos:
+            for nterm in self.neg:
+                if node.unify(pterm, nterm) is not None:
+                    return True
+        return False
 
     def empty(self):
         """
@@ -76,7 +83,9 @@ class Clause:
         """
         Gives a simple representation of the Clause
         """
-        return repr(self.pos) + " > " + repr(self.neg)
+        if self.empty():
+            return '[empty]'
+        return ' or '.join(map(repr, self.pos)) + (' or ' if self.pos and self.neg else '') + ('not ' if self.neg else '') + ' or not '.join(map(repr, self.neg))
 
     def __eq__(self, other):
         return self.pos == other.pos and self.neg == other.neg
@@ -135,17 +144,31 @@ def resolution(clauses, query):
     
     clauses.add(Clause(query.neg, query.pos)) # negate the query
 
+    round = 0
     while True:
+        print "Resolution: Round {}".format(round)
+        for clause in clauses:
+            print "  " + repr(clause)        
         new = set()
         for clause_pair in itertools.combinations(clauses, 2):
             resolvents = resolve(*clause_pair)
             if resolvents:
-                if resolvents.empty():
+                print "Resolved:"
+                print "--{}".format(clause_pair[0])
+                print "--{}".format(clause_pair[1])
+                print "----"
+                print '\n'.join(map(repr,resolvents))
+                print ''
+            for resolvent in resolvents:
+                if resolvent.empty():
+                    #print "Resolved {} and {} to nothing".format(*clause_pair)
                     return True
-                new |= {resolvents}
+            new |= {resolvent for resolvent in resolvents if not resolvent.tautological()}
         if new <= clauses:
             return False
+        #print "Resolved new clauses: {}".format(new)
         clauses |= new
+        round += 1
 
 
 def resolve(clause_one, clause_two):
@@ -164,23 +187,16 @@ def resolve(clause_one, clause_two):
     :rtype: Clause
     :returns: the Clause resulting from performing resolution
     """
-    sub_str = {}
-    new_pos = []
-    new_neg = []
+    resolvent_clauses = set()
 
-    resolve_with(clause_one.pos, clause_two.neg, sub_str, new_pos, new_neg)
-    resolve_with(clause_two.pos, clause_one.neg, sub_str, new_pos, new_neg)
+    all_pos = clause_one.pos | clause_two.pos
+    all_neg = clause_one.neg | clause_two.neg
 
-    if len(new_neg) == len(clause_one.neg) + len(clause_two.neg):
-        return None
-
-    new_neg = [substitute_term(sub_str, term) for term in new_neg]
-    new_pos = [substitute_term(sub_str, term) for term in new_pos]
-
-    return Clause(new_pos, new_neg)
+    return (resolve_with(clause_one.pos, clause_two.neg, all_pos, all_neg) |
+            resolve_with(clause_two.pos, clause_one.neg, all_pos, all_neg))
 
 
-def resolve_with(pos, neg, sub_str, new_pos, new_neg):
+def resolve_with(pos, neg, all_pos, all_neg):
     """
     Resolves the positive terms from one clause with the negative terms
     of another clause, updating the subsitution string and adding
@@ -197,24 +213,30 @@ def resolve_with(pos, neg, sub_str, new_pos, new_neg):
     :param new_pos: the negative disjuncted terms to be in the resulting clause
     :type new_neg: list[Node]
     """
-    untouched_neg = set(neg)
+    resolvents = set()
 
     for pterm in pos:
-        resolved_term = False
         for nterm in neg:
-            nterm = substitute_term(sub_str, nterm)
             subs = node.unify(pterm, nterm)
 
             if subs is not None:
-                pterm = substitute_term(subs, pterm)
-                sub_str.update(subs)
-                resolved_term = True
-                untouched_neg.discard(nterm)
-        if not resolved_term:
-            new_pos.append(pterm)
+                #print "Unified {} and {}:::{}".format(pterm, nterm, subs)
+                resolvents.add(Clause(
+                    (factor([substitute_term(subs, term) for term in all_pos - {pterm}])),
+                    (factor([substitute_term(subs, term) for term in all_neg - {nterm}])),
+                ))
+                break
 
-    new_neg.extend(list(untouched_neg))
+    return resolvents
 
+def factor(term_list):
+    for (ida, terma), (idb, termb) in itertools.combinations(enumerate(term_list), 2):
+        subs = node.unify(terma, termb)
+        if subs is not None:
+            term_list.pop(ida)
+            return factor([substitute_term(subs, term) for term in term_list])
+    return term_list
+            
 
 if __name__ == '__main__':
     """
